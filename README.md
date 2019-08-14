@@ -1,5 +1,5 @@
 # ![Logo][logo] Organeasy ![Logo][logo]
-*Sua rotina na plama de suas mãos!*
+*Sua rotina na palma de suas mãos!*
 
 Organeasy é um sistema WEB que visa auxiliar alunos que buscam organizar sua rotina afim de obter mais sucesso em
 suas atividade (e um tempo de lazer, é claro!).
