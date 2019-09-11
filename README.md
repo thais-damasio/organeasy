@@ -6,8 +6,7 @@ suas atividade (e um tempo de lazer, é claro!).
 Nossa solução busca integrar em um mesmo sistema funções como:
 - Calendário com cronograma
 - Gerenciador de notas
-- Gerenciador de custos
-- Gerenciador de compromissos
+- Gerenciador de compromissos e atividades
 
 Visite nosso site: https://organeasy.herokuapp.com/ ![love][heart]
 ***
@@ -23,19 +22,15 @@ Desta forma colocamos em prática conceitos adquiridos ao longo da formação da
 ***
 Equipe
 ------
-* Gabrielle Alcantara (Gerente de Projeto)
-* Guilherme Vianna (FullStack)
+* Gabrielle Alcantara (FullStack)
+* Guilherme Vianna (Gerente de Projeto)
 * Luiz Felipe (Tester)
 * Thaís Damásio (FrontEnd)
 * Vinícius Pacheco (BackEnd)
 ***
-Casos de Uso
+Especificação
 ------
-1. A ser definido...
-***
-Dependências
-------
-A ser definido...
+Toda a especificação está contida na documentação presente neste proejto []()
 
 [logo]: https://img.icons8.com/offices/30/000000/curriculum.png "Logo"
 [heart]: https://img.icons8.com/material-two-tone/24/000000/novel.png "Heart"
