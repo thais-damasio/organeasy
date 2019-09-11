@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- UIkit JS -->
+    <script src="js/script.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <!-- Navbar -->
+        <nav class="uk-navbar uk-navbar-container uk-margin">
+            <!-- Toggle do menu -->
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></span>
+                </a>
+            </div>
+            <!--  -->
+            <!-- Barra de notificações -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li><a href="#" uk-icon="icon: bell"></a>
+                        <div uk-dropdown="pos: bottom-right" class="uk-panel-scrollable">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">Notificação 1</a></li>
+                                <li><a href="#">Notificação 2</a></li>
+                                <li><a href="#">Notificação 3</a></li>
+                                <li><a href="#">Notificação 4</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="#">Leia mais...</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  -->
+        </nav>
+        <!--  -->
+
+        <!-- Menu Lateral -->
+        <div id="offcanvas-nav" uk-offcanvas="mode: push; bg-close: false">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-default">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="img/avatar/boy1.svg">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-margin-remove-bottom">Usuário xxx</h4>
+                            <p class="uk-text-meta uk-margin-remove-top">09/09/2019</p>
+                        </div>
+                    </div>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="home.html"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                            Home</a></li>
+                    <li><a href="cursos_atv.html"><span class="uk-margin-small-right" uk-icon="icon: calendar"></span>
+                            Cursos e
+                            Atividades</a></li>
+                    <li class="uk-active"><a href="#"><span class="uk-margin-small-right" uk-icon="icon: bell"></span>
+                            Notificações</a>
+                    </li>
+                    <li><a href="estatisticas.html"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>
+                            Estatísticas</a>
+                    </li>
+                    <li><a href="notas.html"><span class="uk-margin-small-right" uk-icon="icon: pencil"></span> Notas</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="index.html"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+
+    <div class="uk-container">
+        <span class="uk-text-lead">Notificações</span>
+        <!-- Notificações -->
+        <ul uk-accordion>
+            <li class="uk-open">
+                <!-- Desta Semana -->
+                <a class="uk-accordion-title uk-button-accordion uk-padding-small" href="#">Nessa Semana</a>
+                <div class="uk-accordion-content">
+                    <ul class="uk-list uk-list-striped">
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações xxx</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>1 dia atrás...</span>
+                                    <span class="" uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações xyz</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>Agora há pouco...</span>
+                                    <span uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações yxw</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>1 semana atrás...</span>
+                                    <span class="" uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--  -->
+            </li>
+            <li>
+                <!-- Deste Mês -->
+                <a class="uk-accordion-title uk-button-accordion uk-padding-small" href="#">Nesse Mês</a>
+                <div class="uk-accordion-content">
+                    <ul class="uk-list uk-list-striped">
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações xxx</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>1 dia atrás...</span>
+                                    <span class="" uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações xyz</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>Agora há pouco...</span>
+                                    <span uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="uk-text-middle" uk-icon="icon: bell"></span>
+                                <span class="uk-text-middle">Notificações yxw</span>
+                                <div class="uk-margin-remove uk-align-right uk-text-light">
+                                    <span>1 semana atrás...</span>
+                                    <span class="" uk-icon="icon: clock">
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!--  -->
+            </li>
+        </ul>
+        <!--  -->
+    </div>
+
+    <script>
+        window.addEventListener("load", resizeMenu)
+        window.addEventListener("resize", resizeMenu);
+
+
+        //Carrega o menu lateral assim q estiver pronto
+        function resizeMenu() {
+            var x = window.matchMedia("(max-width: 900px)");
+            offcanvas = document.getElementById("offcanvas-nav");
+            if (!x.matches) {
+                UIkit.offcanvas(offcanvas).show();
+            }
+            else {
+                UIkit.offcanvas(offcanvas).hide();
+
+            }
+        }
+    </script>
+</body>
+
+
+</html>

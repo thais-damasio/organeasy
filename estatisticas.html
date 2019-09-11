@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- jQuery -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <!-- ChartJS -->
+    <script src="chart.js/Chart.min.js"></script>
+    <!-- UIkit JS -->
+    <script src="js/script.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <!-- Navbar -->
+        <nav class="uk-navbar uk-navbar-container uk-margin">
+            <!-- Toggle do menu -->
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></span>
+                </a>
+            </div>
+            <!--  -->
+            <!-- Barra de notificações -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li><a href="#" uk-icon="icon: bell"></a>
+                        <div uk-dropdown="pos: bottom-right" class="uk-panel-scrollable">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">Notificação 1</a></li>
+                                <li><a href="#">Notificação 2</a></li>
+                                <li><a href="#">Notificação 3</a></li>
+                                <li><a href="#">Notificação 4</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="notificacoes.html">Leia mais...</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  -->
+        </nav>
+        <!--  -->
+
+        <!-- Menu Lateral -->
+        <div id="offcanvas-nav" uk-offcanvas="mode: push; bg-close: false">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-default">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="img/avatar/boy1.svg">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-margin-remove-bottom">Usuário xxx</h4>
+                            <p class="uk-text-meta uk-margin-remove-top">09/09/2019</p>
+                        </div>
+                    </div>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="home.html"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                            Home</a></li>
+                    <li><a href="cursos_atv.html"><span class="uk-margin-small-right" uk-icon="icon: calendar"></span>
+                            Cursos e
+                            Atividades</a></li>
+                    <li><a href="notificacoes.html"><span class="uk-margin-small-right" uk-icon="icon: bell"></span>
+                            Notificações</a>
+                    </li>
+                    <li class="uk-active"><a href="#"><span class="uk-margin-small-right"
+                                uk-icon="icon: thumbnails"></span>
+                            Estatísticas</a>
+                    </li>
+                    <li><a href="notas.html"><span class="uk-margin-small-right" uk-icon="icon: pencil"></span> Notas</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="index.html"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+
+    <!-- Corpo da página -->
+    <div class="uk-container">
+        <div class="uk-section uk-padding-remove-top">
+            <!-- Gráfico de Estatísticas -->
+            <div class="uk-align-center uk-card-default uk-card-hover uk-card-body uk-width-4-5">
+                <h3 class="uk-card-title uk-margin-remove-top">Estatísticas das Atividades</h3>
+                <canvas id="donutChart" style="height:250px; max-height:230px"></canvas>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+    <!--  -->
+
+    <script>
+        window.addEventListener("load", resizeMenu)
+        window.addEventListener("resize", resizeMenu);
+
+        //Carrega o menu lateral assim q estiver pronto
+        function resizeMenu() {
+            var x = window.matchMedia("(max-width: 900px)");
+            offcanvas = document.getElementById("offcanvas-nav");
+            if (!x.matches) {
+                UIkit.offcanvas(offcanvas).show();
+            }
+            else {
+                UIkit.offcanvas(offcanvas).hide();
+
+            }
+        }
+        
+        //Gera o gráfico de donut
+        $(function () {
+            //-------------
+            //- DONUT CHART -
+            //-------------
+            var donutChartCanvas = $('#donutChart').get(0).getContext('2d')
+            var donutData = {
+                labels: [
+                    'Concluídas',
+                    'Não Concluídas',
+                    'Sem Status',
+                ],
+                datasets: [
+                    {
+                        data: [700, 500, 400],
+                        backgroundColor: ['#00a65a', '#f56954', '#d2d6de'],
+                    }
+                ]
+            }
+            var donutOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+            }
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            var donutChart = new Chart(donutChartCanvas, {
+                type: 'doughnut',
+                data: donutData,
+                options: donutOptions
+            })
+        });
+    </script>
+</body>
+
+
+</html>

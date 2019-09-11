@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- UIkit JS -->
+    <script src="js/script.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <!-- Navbar -->
+        <nav class="uk-navbar uk-navbar-container uk-margin">
+            <!-- Toggle do menu -->
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></span>
+                </a>
+            </div>
+            <!--  -->
+            <!-- Barra de notificações -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li><a href="#" uk-icon="icon: bell"></a>
+                        <div uk-dropdown="pos: bottom-right" class="uk-panel-scrollable">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">Notificação 1</a></li>
+                                <li><a href="#">Notificação 2</a></li>
+                                <li><a href="#">Notificação 3</a></li>
+                                <li><a href="#">Notificação 4</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="notificacoes.html">Leia mais...</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  -->
+        </nav>
+        <!--  -->
+
+        <!-- Menu Lateral -->
+        <div id="offcanvas-nav" uk-offcanvas="mode: push; bg-close: false">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-default">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="img/avatar/boy1.svg">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-margin-remove-bottom">Usuário xxx</h4>
+                            <p class="uk-text-meta uk-margin-remove-top">09/09/2019</p>
+                        </div>
+                    </div>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="home.html"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                            Home</a></li>
+                    <li class="uk-active"><a href="cursos_atv.html"><span class="uk-margin-small-right"
+                                uk-icon="icon: calendar"></span> Cursos e
+                            Atividades</a></li>
+                    <li><a href="notificacoes.html"><span class="uk-margin-small-right" uk-icon="icon: bell"></span> Notificações</a>
+                    </li>
+                    <li><a href="estatisticas.html"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>
+                            Estatísticas</a>
+                    </li>
+                    <li><a href="notas.html"><span class="uk-margin-small-right" uk-icon="icon: pencil"></span> Notas</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="index.html"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+
+    <div class="uk-container">
+        <div class="uk-card uk-card-default uk-width-4-5@m uk-align-center">
+            <!-- Header -->
+            <div class="uk-card-header">
+                <h3 class="uk-card-title uk-margin-remove-bottom">Novo Atividade</h3>
+            </div>
+            <!--  -->
+            <div class="uk-card-body">
+                <form>
+                    <!-- Tipo da Atividade -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Tipo de Atividade</label>
+                        <div class="uk-form-controls">
+                            <select onchange="typeAtv(this)" class="uk-select">
+                                <option value="1">Atividade Rotina/ Lazer</option>
+                                <option value="2">De Matéria</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Matéria da Atividade -->
+                    <div id="list_materias" class="uk-margin" style="display: none">
+                        <label class="uk-form-label" for="form-stacked-text">Matéria</label>
+                        <div class="uk-form-controls">
+                            <select class="uk-select">
+                                <option value="1">Curso 1 | Matéria XX</option>
+                                <option value="2">Curso 2 | Matéria XY</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Título da Atividade -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Título</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="form-stacked-text" type="text"
+                                placeholder="Título da atividade">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Descrição da Atividade -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Descrição</label>
+                        <div class="uk-form-controls">
+                            <textarea class="uk-textarea" rows="5" placeholder="Descrição da atividade"></textarea>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Data de Entrega -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Data de Entrega</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" type="date">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Curso de matérias -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Já foi concluída?</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                                <label><input class="uk-radio" type="radio" name="radio2" value="s"> Sim</label>
+                                <label><input class="uk-radio" type="radio" name="radio2" value="n" checked> Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Accordions -->
+                    <ul uk-accordion="multiple: true">
+                        <!-- Checklists -->
+                        <li id="has_materia">
+                            <a class="uk-accordion-title uk-button-accordion-li" href="#">Checklist 1</a>
+                            <div class="uk-accordion-content">
+                                <ul id="materias" class="uk-list uk-list-striped">
+                                    <li>
+                                        <input checked class="uk-checkbox" type="checkbox">
+                                        &nbsp;Teste 1
+                                        <span class="uk-align-right i-remove" uk-icon="close"></span>
+                                    </li>
+                                    <li>
+                                        <input class="uk-checkbox" type="checkbox">
+                                        &nbsp;Teste 2
+                                        <span class="uk-align-right i-remove" uk-icon="close"></span>
+                                    </li>
+                                </ul>
+                                <hr>
+                                <!-- Novo Curso -->
+                                <input class="uk-input" id="nova_materia" type="text"
+                                    placeholder="Insira o nome de uma nova matéria">
+                                <a class="uk-display-block uk-text-right uk-margin-top">
+                                    <span class="uk-margin-small-right" uk-icon="plus"></span>
+                                    Adicionar
+                                </a>
+                                <!--  -->
+                            </div>
+                        </li>
+                        <!--  -->
+                        <hr>
+                        <!-- Novo Checklist -->
+                        <input class="uk-input" id="nova_materia" type="text" placeholder="Insira o nome do Checklist">
+                        <a class="uk-display-block uk-text-right uk-margin-top" onclick="addMateria()">
+                            <span class="uk-margin-small-right" uk-icon="plus"></span>
+                            Novo Checklist
+                        </a>
+                        <!--  -->
+                    </ul>
+                    <!--  -->
+                </form>
+            </div>
+            <div class="uk-card-footer uk-text-center">
+                <button class="uk-button uk-button-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", resizeMenu)
+        window.addEventListener("resize", resizeMenu);
+
+
+        //Carrega o menu lateral assim q estiver pronto
+        function resizeMenu() {
+            var x = window.matchMedia("(max-width: 900px)");
+            offcanvas = document.getElementById("offcanvas-nav");
+            if (!x.matches) {
+                UIkit.offcanvas(offcanvas).show();
+            }
+            else {
+                UIkit.offcanvas(offcanvas).hide();
+
+            }
+        }
+    </script>
+</body>
+
+
+</html>

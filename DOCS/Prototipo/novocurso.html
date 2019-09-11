@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- UIkit JS -->
+    <script src="js/script.js"></script>
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <!-- Navbar -->
+        <nav class="uk-navbar uk-navbar-container uk-margin">
+            <!-- Toggle do menu -->
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></span>
+                </a>
+            </div>
+            <!--  -->
+            <!-- Barra de notificações -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li><a href="#" uk-icon="icon: bell"></a>
+                        <div uk-dropdown="pos: bottom-right" class="uk-panel-scrollable">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">Notificação 1</a></li>
+                                <li><a href="#">Notificação 2</a></li>
+                                <li><a href="#">Notificação 3</a></li>
+                                <li><a href="#">Notificação 4</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="notificacoes.html">Leia mais...</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  -->
+        </nav>
+        <!--  -->
+
+        <!-- Menu Lateral -->
+        <div id="offcanvas-nav" uk-offcanvas="mode: push; bg-close: false">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-default">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="img/avatar/boy1.svg">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-margin-remove-bottom">Usuário xxx</h4>
+                            <p class="uk-text-meta uk-margin-remove-top">09/09/2019</p>
+                        </div>
+                    </div>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="home.html"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                            Home</a></li>
+                    <li class="uk-active"><a href="cursos_atv.html"><span class="uk-margin-small-right"
+                                uk-icon="icon: calendar"></span> Cursos e
+                            Atividades</a></li>
+                    <li><a href="notificacoes.html"><span class="uk-margin-small-right" uk-icon="icon: bell"></span> Notificações</a>
+                    </li>
+                    <li><a href="estatisticas.html"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>
+                            Estatísticas</a>
+                    </li>
+                    <li><a href="notas.html"><span class="uk-margin-small-right" uk-icon="icon: pencil"></span> Notas</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="index.html"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+
+    <div class="uk-container">
+        <div class="uk-card uk-card-default uk-width-4-5@m uk-align-center">
+            <!-- Header -->
+            <div class="uk-card-header">
+                <h3 class="uk-card-title uk-margin-remove-bottom">Novo Curso</h3>
+            </div>
+            <!--  -->
+            <div class="uk-card-body">
+                <form>
+                    <!-- Nome do curso -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Nome</label>
+                        <div class="uk-form-controls">
+                            <input class="uk-input" id="form-stacked-text" type="text" placeholder="Nome do curso">
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Curso de matérias -->
+                    <div class="uk-margin">
+                        <label class="uk-form-label" for="form-stacked-text">Curso com matéria?</label>
+                        <div class="uk-form-controls">
+                            <div class="uk-margin uk-grid-small uk-child-width-auto uk-grid">
+                                <label><input class="uk-radio" type="radio" onchange="changeHasMateria(this)"
+                                        name="radio2" value="s" checked> Sim</label>
+                                <label><input class="uk-radio" type="radio" onchange="changeHasMateria(this)"
+                                        name="radio2" value="n"> Não</label>
+                            </div>
+                        </div>
+                    </div>
+                    <!--  -->
+                    <!-- Accordions -->
+                    <ul uk-accordion="multiple: true">
+                        <!-- Lista de matérias -->
+                        <li id="has_materia">
+                            <a class="uk-accordion-title uk-button-accordion-li" href="#">Matérias</a>
+                            <div class="uk-accordion-content">
+                                <ul id="materias" class="uk-list uk-list-striped">
+                                    <li><span class="i-remove" uk-icon="close"></span>&nbsp;Matéria 1</li>
+                                    <li><span class="i-remove" uk-icon="close"></span>&nbsp;Matéria 2</li>
+                                </ul>
+                                <hr>
+                                <!-- Novo Curso -->
+                                <input class="uk-input" id="nova_materia" type="text"
+                                    placeholder="Insira o nome de uma nova matéria">
+                                <a class="uk-display-block uk-text-right uk-margin-top" onclick="addMateria()">
+                                    <span class="uk-margin-small-right" uk-icon="plus"></span>
+                                    Adicionar
+                                </a>
+                                <!--  -->
+                            </div>
+                        </li>
+                        <!--  -->
+                        <li class="uk-open">
+                            <!-- Tabela de Atividades -->
+                            <a class="uk-accordion-title uk-button-accordion-li" href="#">Atividades</a>
+                            <div class="uk-accordion-content">
+                                <table class="uk-table uk-table-responsive uk-table-justify uk-table-divider">
+                                    <thead>
+                                        <tr>
+                                            <th class="uk-width-1-6@s">Feito</th>
+                                            <th class="uk-width-1-6@s">Título</th>
+                                            <th class="uk-width-3-6@s">Descrição</th>
+                                            <th class="uk-width-1-6@s">Data</th>
+                                            <th class="uk-width-1-6@s">Nota</th>
+                                            <th class="uk-width-1-6@s">Valor</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Informações da Atividade -->
+                                        <tr>
+                                            <td>
+                                                <input disabled checked class="uk-checkbox" type="checkbox">
+                                            </td>
+                                            <td>ATV 1</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua.</td>
+                                            <td>00/00/0000</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <ul uk-accordion>
+                                                    <li>
+                                                        <a class="uk-accordion-title" href="#">Checklist 1</a>
+                                                        <div class="uk-accordion-content">
+                                                            <ul class="uk-list uk-list-divider">
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 1</li>
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 2</li>
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 3</li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <!--  -->
+                                        <!-- Informações da Atividade -->
+                                        <tr>
+                                            <td><label><input disabled class="uk-checkbox" type="checkbox"></label></td>
+                                            <td>ATV 2</td>
+                                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                                tempor incididunt ut labore et dolore magna aliqua.</td>
+                                            <td>00/00/0000</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <ul uk-accordion>
+                                                    <li>
+                                                        <a class="uk-accordion-title" href="#">Checklist 1</a>
+                                                        <div class="uk-accordion-content">
+                                                            <ul class="uk-list uk-list-divider">
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 1</li>
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 2</li>
+                                                                <li><input class="uk-checkbox uk-margin-right"
+                                                                        type="checkbox">List item 3</li>
+                                                            </ul>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        <!--  -->
+                                    </tbody>
+                                </table>
+
+                                <a class="uk-display-block uk-text-right uk-margin-top">
+                                    <span class="uk-margin-small-right" uk-icon="plus"></span>
+                                    Adicionar Atividade
+                                </a>
+                                <!--  -->
+                            </div>
+                            <!--  -->
+                        </li>
+                    </ul>
+                    <!--  -->
+                </form>
+            </div>
+            <div class="uk-card-footer uk-text-center">
+                <button class="uk-button uk-button-primary">Salvar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener("load", resizeMenu)
+        window.addEventListener("resize", resizeMenu);
+
+
+        //Carrega o menu lateral assim q estiver pronto
+        function resizeMenu() {
+            var x = window.matchMedia("(max-width: 900px)");
+            offcanvas = document.getElementById("offcanvas-nav");
+            if (!x.matches) {
+                UIkit.offcanvas(offcanvas).show();
+            }
+            else {
+                UIkit.offcanvas(offcanvas).hide();
+
+            }
+        }
+    </script>
+</body>
+
+
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="css/uikit.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/mycalendar.css" />
+    <link rel="stylesheet" href="calendar/fullcalendar/main.min.css">
+    <link rel="stylesheet" href="calendar/fullcalendar-daygrid/main.min.css">
+    <link rel="stylesheet" href="calendar/fullcalendar-timegrid/main.min.css">
+    <link rel="stylesheet" href="calendar/fullcalendar-bootstrap/main.min.css">
+    <!-- UIkit JS -->
+    <script src="js/uikit.min.js"></script>
+    <script src="js/uikit-icons.min.js"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho da página -->
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <!-- Navbar -->
+        <nav class="uk-navbar uk-navbar-container uk-margin">
+            <!-- Toggle do menu -->
+            <div class="uk-navbar-left">
+                <a class="uk-navbar-toggle" href="#">
+                    <span uk-navbar-toggle-icon uk-toggle="target: #offcanvas-nav"></span>
+                </a>
+            </div>
+            <!--  -->
+            <!-- Barra de notificações -->
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li><a href="#" uk-icon="icon: bell"></a>
+                        <div uk-dropdown="pos: bottom-right" class="uk-panel-scrollable">
+                            <ul class="uk-nav uk-dropdown-nav">
+                                <li><a href="#">Notificação 1</a></li>
+                                <li><a href="#">Notificação 2</a></li>
+                                <li><a href="#">Notificação 3</a></li>
+                                <li><a href="#">Notificação 4</a></li>
+                                <li class="uk-nav-divider"></li>
+                                <li class="uk-active"><a href="notificacoes.html">Leia mais...</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <!--  -->
+        </nav>
+        <!--  -->
+
+        <!-- Menu Lateral -->
+        <div id="offcanvas-nav" uk-offcanvas="mode: push; bg-close: false">
+            <div class="uk-offcanvas-bar">
+
+                <ul class="uk-nav uk-nav-default">
+                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                        <div class="uk-width-auto">
+                            <img class="uk-border-circle" width="40" height="40" src="img/avatar/boy1.svg">
+                        </div>
+                        <div class="uk-width-expand">
+                            <h4 class="uk-margin-remove-bottom">Usuário xxx</h4>
+                            <p class="uk-text-meta uk-margin-remove-top">09/09/2019</p>
+                        </div>
+                    </div>
+                    <li class="uk-nav-divider"></li>
+                    <li class="uk-active"><a href="#"><span class="uk-margin-small-right" uk-icon="icon: home"></span>
+                            Home</a></li>
+                    <li><a href="cursos_atv.html"><span class="uk-margin-small-right" uk-icon="icon: calendar"></span> Cursos e
+                            Atividades</a></li>
+                    <li><a href="notificacoes.html"><span class="uk-margin-small-right" uk-icon="icon: bell"></span> Notificações</a>
+                    </li>
+                    <li><a href="estatisticas.html"><span class="uk-margin-small-right" uk-icon="icon: thumbnails"></span>
+                            Estatísticas</a>
+                    </li>
+                    <li><a href="notas.html"><span class="uk-margin-small-right" uk-icon="icon: pencil"></span> Notas</a></li>
+                    <li class="uk-nav-divider"></li>
+                    <li><a href="index.html"><span class="uk-margin-small-right" uk-icon="icon: sign-out"></span>
+                            Sair</a>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+        <!--  -->
+    </div>
+    <!--  -->
+
+    <div class="uk-container">
+        <!-- Slider com atividades da semana -->
+        <div uk-slider>
+            <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1">
+                <!-- Lista de Atividades -->
+                <ul class="uk-slider-items uk-child-width-1-3@s uk-child-width-1-3@m uk-grid">
+                    <li>
+                        <!-- Card de Atividade -->
+                        <div class="uk-card uk-card-secondary">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Atividade 1</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt.</p>
+                            </div>
+                            <div class="uk-card-footer">
+                                <span class="uk-position-bottom-left uk-padding-small">00/00/0000</span>
+                                <!-- <span class="uk-position-bottom-right uk-padding-small"> -->
+                                <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
+                                    mais...</button>
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <!--  -->
+                    </li>
+                    <li>
+                        <!-- Card de Atividade -->
+                        <div class="uk-card uk-card-secondary">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Atividade 2</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt.</p>
+                            </div>
+                            <div class="uk-card-footer">
+                                <span class="uk-position-bottom-left uk-padding-small">00/00/0000</span>
+                                <!-- <span class="uk-position-bottom-right uk-padding-small"> -->
+                                <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
+                                    mais...</button>
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <!--  -->
+                    </li>
+                    <li>
+                        <!-- Card de Atividade -->
+                        <div class="uk-card uk-card-secondary">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Atividade 3</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt.</p>
+                            </div>
+                            <div class="uk-card-footer">
+                                <span class="uk-position-bottom-left uk-padding-small">00/00/0000</span>
+                                <!-- <span class="uk-position-bottom-right uk-padding-small"> -->
+                                <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
+                                    mais...</button>
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <!--  -->
+                    </li>
+                    <li>
+                        <!-- Card de Atividade -->
+                        <div class="uk-card uk-card-secondary">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Atividade 4</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt.</p>
+                            </div>
+                            <div class="uk-card-footer">
+                                <span class="uk-position-bottom-left uk-padding-small">00/00/0000</span>
+                                <!-- <span class="uk-position-bottom-right uk-padding-small"> -->
+                                <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
+                                    mais...</button>
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <!--  -->
+                    </li>
+                    <li>
+                        <!-- Card de Atividade -->
+                        <div class="uk-card uk-card-secondary">
+                            <div class="uk-card-body">
+                                <h3 class="uk-card-title">Atividade 5</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+                                    tempor incididunt.</p>
+                            </div>
+                            <div class="uk-card-footer">
+                                <span class="uk-position-bottom-left uk-padding-small">00/00/0000</span>
+                                <!-- <span class="uk-position-bottom-right uk-padding-small"> -->
+                                <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
+                                    mais...</button>
+                                <!-- </span> -->
+                            </div>
+                        </div>
+                        <!--  -->
+                    </li>
+                </ul>
+                <!--  -->
+                <!-- Botões de previous e next -->
+                <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous
+                    uk-slider-item="previous"></a>
+                <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next
+                    uk-slider-item="next"></a>
+                <!--  -->
+            </div>
+            <!-- Navegador de pontos do slide -->
+            <ul class="uk-slider-nav uk-dotnav uk-flex-center uk-margin"></ul>
+            <!--  -->
+            <!-- Legenda das atividades -->
+            <ul class="legend">
+                <li><span class="lg1"></span>Legenda 1</li>
+                <li><span class="lg2"></span>Leganda 2</li>
+                <li><span class="lg3"></span>Legenda 3</li>
+            </ul>
+            <!--  -->
+        </div>
+        <!--  -->
+        <!-- Calendário -->
+        <div class="uk-section">
+            <ul id="accordion" class="none-list">
+                <li>
+                    <a class="uk-accordion-title uk-padding-small uk-button-accordion" href="#">Calendário</a>
+                    <div class="uk-accordion-content" id="calendar"></div>
+                </li>
+            </ul>
+        </div>
+        <!--  -->
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery/jquery.min.js"></script>
+    <!-- jQuery UI -->
+    <script src="calendar/jquery-ui/jquery-ui.min.js"></script>
+    <!-- fullCalendar 2.2.5 -->
+    <script src="calendar/fullcalendar/main.min.js"></script>
+    <script src="calendar/fullcalendar-daygrid/main.min.js"></script>
+    <script src="calendar/fullcalendar-timegrid/main.min.js"></script>
+    <script src="calendar/fullcalendar-interaction/main.min.js"></script>
+    <script src="calendar/fullcalendar-bootstrap/main.min.js"></script>
+    <script>
+        window.addEventListener("load", resizeMenu)
+        window.addEventListener("resize", resizeMenu);
+
+
+        //Carrega o menu lateral assim q estiver pronto
+        function resizeMenu() {
+            var x = window.matchMedia("(max-width: 900px)");
+            offcanvas = document.getElementById("offcanvas-nav");
+            if (!x.matches) {
+                UIkit.offcanvas(offcanvas).show();
+            }
+            else {
+                UIkit.offcanvas(offcanvas).hide();
+
+            }
+        }
+
+        // Renderiza o calendário
+        $(function () {
+            //Inicializa o calendário
+            var date = new Date()
+            var d = date.getDate(),
+                m = date.getMonth(),
+                y = date.getFullYear()
+
+            var Calendar = FullCalendar.Calendar;
+            var Draggable = FullCalendarInteraction.Draggable;
+
+            var checkbox = document.getElementById('drop-remove');
+            var calendarEl = document.getElementById('calendar');
+
+
+            var calendar = new Calendar(calendarEl, {
+                locale: 'pt-br',
+                plugins: ['bootstrap', 'interaction', 'dayGrid', 'timeGrid'],
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                },
+                buttonText: {
+                    today: "Hoje",
+                    month: "Mês",
+                    week: "Semana",
+                    day: "Dia"
+                },
+                //Random default events
+                events: [
+                    {
+                        title: 'Extensivo',
+                        start: new Date(y, m, 1),
+                        backgroundColor: '#f56954', //red
+                        borderColor: '#f56954' //red
+                    },
+                    {
+                        title: 'Aniversário Ana',
+                        start: new Date(y, m, d - 5),
+                        end: new Date(y, m, d - 2),
+                        backgroundColor: '#f39c12', //yellow
+                        borderColor: '#f39c12' //yellow
+                    },
+                    {
+                        title: 'Reunião',
+                        start: new Date(y, m, d, 10, 30),
+                        allDay: false,
+                        backgroundColor: '#0073b7', //Blue
+                        borderColor: '#0073b7' //Blue
+                    },
+                    {
+                        title: 'Show Metallica',
+                        start: new Date(y, m, d, 12, 0),
+                        end: new Date(y, m, d, 14, 0),
+                        allDay: false,
+                        backgroundColor: '#00c0ef', //Info (aqua)
+                        borderColor: '#00c0ef' //Info (aqua)
+                    },
+                ],
+                editable: true,
+                droppable: true, // this allows things to be dropped onto the calendar !!!
+                drop: function (info) {
+                    // is the "remove after drop" checkbox checked?
+                    if (checkbox.checked) {
+                        // if so, remove the element from the "Draggable Events" list
+                        info.draggedEl.parentNode.removeChild(info.draggedEl);
+                    }
+                }
+            });
+
+            calendar.render();
+            let component = document.getElementById('accordion');
+            let accordion = UIkit.accordion(component);
+        })
+    </script>
+</body>
+
+
+</html>
