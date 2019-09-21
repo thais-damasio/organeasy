@@ -1,1 +1,1 @@
-web: Prototipo/ 
+web: DOCS/Prototipo 
