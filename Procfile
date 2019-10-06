@@ -1,1 +1,1 @@
-web: npm DOCS/Prototipo 
+web: node DOCS/Prototipo 
