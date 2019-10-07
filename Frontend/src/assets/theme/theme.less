@@ -1,0 +1,35 @@
+@import './base-theme.less';
+.spinner-loading {
+  margin-left: 5px;
+}
+.btn-loading {
+  padding-right: 20px; 
+}
+.form-group-error {
+  border: 1px solid #f57f6c;
+  animation: shake-in .5s;
+}
+.error-message {
+  color: #f57f6c;
+  font-size: 13px;
+  margin: 5px 0px 0px 5px;
+}.bounce-transition {
+  display: inline-block; /* otherwise scale animation won't work */
+}
+@keyframes shake-in {  
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
