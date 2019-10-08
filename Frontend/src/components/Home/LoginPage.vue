@@ -1,8 +1,9 @@
 <template>
   <div
     class="uk-background-blend-soft-light uk-background-black uk-background-cover uk-height-viewport uk-panel uk-flex uk-flex-center uk-flex-middle"
-    :data-src="background"
-    uk-img>
+    data-src="static/img/home.jpg"
+    uk-img
+  >
     <!-- Content da página -->
     <div class="uk-container uk-section">
       <!-- Card de Login -->
@@ -11,52 +12,49 @@
       >
         <!-- Topo do card -->
         <div class="uk-card-media-top">
-          <img :src="logo" alt />
+          <img src="static/img/logos/banner1.png" alt />
         </div>
         <!--  -->
         <!-- Corpo do card -->
-        <div class="uk-card-body">
-          <h3 class="uk-card-title uk-margin-remove">Olá!</h3>
-          <p class="uk-margin-small">Para continuar organizando suas atividades faça seu login.</p>
-
-          <form-login></form-login>
-
+        <div class="uk-card-body uk-padding-remove-bottom uk-padding-remove-top uk-margin-small-top">
+          <!-- Formulário de login ou cadastro -->
+          <router-view>
+            <span class="uk-display-block" slot="register">
+              Não tem uma conta? Cadastre-se
+              <router-link class="uk-link-muted" :to="{ name: 'register'}">aqui</router-link>.
+            </span>
+            <span class="uk-display-block" slot="login">
+              Já possui uma conta? Acesse por
+              <router-link class="uk-link-muted" :to="{ name: 'login'}">aqui</router-link>.
+            </span>
+          </router-view>
+          <!--  -->
         </div>
+
+        <!-- Direitors autorais -->
+        <div class="uk-padding-small uk-text-center uk-text-muted uk-background-light uk-text-small">
+          Icons made by
+          <a class="uk-link-muted" href="https://www.flaticon.com/authors/good-ware" title="Good Ware">Good Ware</a> from
+          <a class="uk-link-muted" href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+        </div>
+        <!--  -->
         <!--  -->
       </div>
       <!--  -->
     </div>
     <!--  -->
-
   </div>
 </template>
 
 <style scoped>
-.uk-background-black {
-  background-color: #444444;
-}
-.uk-section,
-.uk-container {
-  padding-bottom: 0;
-  padding-top: 0;
-}
 </style>
 
 <script>
 //Imagens
-import homeImage from "@/assets/img/home.jpg";
-import FormLogin from "@/components/Home/FormLogin";
-import logoImage from "@/assets/img/logos/banner1.png";
 
 export default {
-  components: {
-    "form-login": FormLogin
-  },
   data: function() {
-    return {
-      background: homeImage,
-      logo: logoImage,
-    };
+    return {};
   }
 };
 </script>
