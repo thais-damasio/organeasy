@@ -28,12 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/aluno', alunoRouter);
 
-const { Aluno } = require('./app/models/index.js');
-Aluno.create({ nome: 'Claudio', email: 'claudio@rocketseat.com.br', senha: '123456', criado_em: new Date() })
-    .then(task => {
-        console.log(task)
-    })
-    .catch(err => {
-        console.log(err)
-    })
+// const { Aluno } = require('./app/models/index.js');
+// Aluno.create({ nome: 'Claudio', email: 'claudio@rocketseat.com.br', senha: '123456', criado_em: new Date() })
+//     .then(task => {
+//         console.log(task)
+//     })
+//     .catch(err => {
+//         console.log(err)
+//     })
 module.exports = app;
