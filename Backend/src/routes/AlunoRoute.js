@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/AlunoController')
 const authenticate = require('../middlewares/Authenticate');
-const { celebrate, Joi, errors } = require('celebrate');
+const { celebrate, Joi } = require('celebrate');
 
 // Login
 router.post('/login', 

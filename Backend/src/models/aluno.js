@@ -6,13 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     // Atributos
     {
       nome: DataTypes.STRING(255),
-      email: {
-        type: DataTypes.STRING(255),
-        unique: {
-          args: "fefef",
-          msg: 'Oops. Looks like you already have an account with this email address. Please try to login.',
-        }
-      },
+      email: DataTypes.STRING(255),
       senha: DataTypes.STRING(255),
       id_avatar: DataTypes.INTEGER,
       criado_em: DataTypes.DATE,
