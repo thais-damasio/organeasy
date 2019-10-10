@@ -14,8 +14,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'Materia',
-            schema: 'schema'
+            tableName: 'Materia'
           },
           key: 'id'
         },
@@ -25,8 +24,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: {
-            tableName: 'Atividade',
-            schema: 'schema'
+            tableName: 'Atividade'
           },
           key: 'id'
         },
@@ -36,6 +34,10 @@ module.exports = {
         type: Sequelize.BOOLEAN
       },
       valor: {
+        allowNull: true,
+        type: Sequelize.DOUBLE
+      },
+      valor_ganho: {
         allowNull: true,
         type: Sequelize.DOUBLE
       }
