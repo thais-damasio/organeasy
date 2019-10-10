@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     AtividadeMateria.associate = function(models) {
-      AtividadeMateria.belongsTo(models.Materia, {foreignKey: 'id_materia', as: 'materia'});
-      AtividadeMateria.belongsTo(models.Atividade, {foreignKey: 'id_atividade', as: 'atividade'});
+      AtividadeMateria.belongsTo(models.Materia, {as: 'materia', targetKey: 'id', foreignKey: 'id_materia'});
+      AtividadeMateria.belongsTo(models.Atividade, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
     }; 
   
     return AtividadeMateria;

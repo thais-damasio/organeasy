@@ -17,8 +17,8 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     AtividadeCurso.associate = function(models) {
-      AtividadeCurso.belongsTo(models.Curso, {foreignKey: 'id_curso', as: 'curso'});
-      AtividadeCurso.belongsTo(models.Atividade, {foreignKey: 'id_atividade', as: 'atividade'});
+      AtividadeCurso.belongsTo(models.Curso, {as: 'curso', targetKey: 'id', foreignKey: 'id_curso'});
+      AtividadeCurso.belongsTo(models.Atividade, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
     };
   
     return AtividadeCurso;

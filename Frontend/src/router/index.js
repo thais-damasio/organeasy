@@ -16,6 +16,10 @@ export default new Router({
       {
         path: 'login', name: 'login', component: FormLogin 
       }]
+    },
+    {
+      // TODO
+      path: '*', name: 'notFound', redirect: 'login'
     }
   ]
 })

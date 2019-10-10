@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     OpcaoChecklist.associate = function(models) {
-      OpcaoChecklist.belongsTo(models.Checklist, {foreignKey: 'id_checklist', as: 'checklist'});
+      OpcaoChecklist.belongsTo(models.Checklist, {as: 'checklist', targetKey: 'id', foreignKey: 'id_checklist'});
     }; 
   
     return OpcaoChecklist;

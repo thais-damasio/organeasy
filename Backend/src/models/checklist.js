@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     Checklist.associate = function(models) {
-      Checklist.belongsTo(models.Atividade, {foreignKey: 'id_atividade', as: 'atividade'});
-      Checklist.hasMany(models.OpcaoChecklist);
+      Checklist.belongsTo(models.Atividade, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
+      Checklist.hasMany(models.OpcaoChecklist, {as: 'opcoes', targetKey: 'id', foreignKey: 'id_checklist'});
     }; 
   
     return Checklist;

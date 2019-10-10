@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     Avatar.associate = function(models) {
-      Avatar.hasMany(models.Aluno, { as: 'alunos'});
+      Avatar.hasMany(models.Aluno, {as: 'alunos', targetKey: 'id', foreignKey: 'id_avatar'});
     }; 
   
     return Avatar;

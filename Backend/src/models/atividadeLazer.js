@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     AtividadeLazer.associate = function(models) {
-      AtividadeLazer.belongsTo(models.Curso, {foreignKey: 'id_atividade', as: 'atividade'});
+      AtividadeLazer.belongsTo(models.Curso, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
     };
   
     return AtividadeLazer;

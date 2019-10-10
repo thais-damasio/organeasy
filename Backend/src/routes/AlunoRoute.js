@@ -1,33 +1,48 @@
 const express = require('express');
 const router = express.Router();
 const controller = require('../controllers/AlunoController')
-var passport = require('passport');
+const authenticate = require('../middlewares/Authenticate');
+const { celebrate, Joi, errors } = require('celebrate');
 
-function authenticationMiddleware() {
-    return function (req, res, next) {
-        if (req.isAuthenticated()) {
-            return next()
-        }
-        res.redirect('/aluno/teste?fail=true')
-    }
-}
-router.get('/teste', function (req, res) {
-    if (req.query.fail)
-        res.send({ message: 'Usuário e/ou senha incorretos!' });
-    else
-        res.send({ message: 'Aqui vc loga' });
-});
+// Login
+router.post('/login', 
+[celebrate({
+    body: Joi.object().keys({
+      email: Joi.string().max(255).required(),
+      senha: Joi.string().max(255).required(),
+    })
+})],
+controller.login);
 
-router.post('/teste',
-    passport.authenticate('local', { successRedirect: '/chat', failureRedirect: '/aluno/teste?fail=true' })
-);
-router.get('/chat', authenticationMiddleware (), function(req, res){
-    res.send({ username: req.user.username });
- });
-router.get('/:id', controller.details);
-router.post('/', controller.post);
-router.put('/:id', controller.put);
-router.delete('/:id', controller.delete);
+// Checa se e-mail já existe
+router.post('/checkemail/', 
+[celebrate({
+    body: Joi.object().keys({
+      email: Joi.string().max(255).required()
+    })
+})],
+ controller.checkemail);
+
+// Cadastro
+router.post('/create/', 
+[celebrate({
+    body: Joi.object().keys({
+      email: Joi.string().max(255).required(),
+      nome: Joi.string().max(255).required(),
+      senha: Joi.string().max(255).required(),
+      id_avatar: Joi.number().integer(),
+    })
+})],
+ controller.post);
+
+// Detalhes
+router.get('/get/:id', [authenticate], controller.details);
+
+// Atualização
+router.put('/update/:id', [authenticate], controller.put);
+
+// Remoção
+router.delete('/delete/:id', [authenticate], controller.delete);
 
 
 module.exports = router;

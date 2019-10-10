@@ -1,6 +1,6 @@
 
 const LocalStrategy = require('passport-local').Strategy
-const db = require('./src/models');
+const db = require('../models');
 
 module.exports = function (passport) {
     // Função para encontrar usuário por nome
@@ -8,7 +8,8 @@ module.exports = function (passport) {
         let aluno = await db.Aluno.findOne({
             where: {
                 email: username
-            }
+            },
+            include: [{association: 'avatar'}]
         })
         .catch(err => callback(err, null));
         
@@ -22,7 +23,8 @@ module.exports = function (passport) {
                 id: id
             }
         })
-            .catch(err => callback(err, null));
+        .catch(err => callback(err, null));
+
         callback(null, aluno);
     }
 
@@ -44,16 +46,18 @@ module.exports = function (passport) {
     },
         (username, password, done) => {
             findUser(username, (err, user) => {
-                if (err) { return done(err) }
+                if (err)
+                    return done(err, null);
 
                 // usuário inexistente
-                if (!user) { return done(null, false) }
+                if (!user)
+                    return done(null, false);
                 
                 // comparando as senhas
                 if(user.validPassword(password))
-                    return done(null, user)
+                    return done(null, user);
                 else
-                    return done(null, false)
+                    return done(null, false);
             })
         }
     ));

@@ -1,35 +1,84 @@
 const { Aluno } = require('../models');
+const passport = require('passport');
+const { error, success } = require('../config');
+
+// POST: /login
+exports.login = (req, res) => {
+    passport.authenticate('local', function (err, user, info) {
+        if (err) {
+            res.status(error.serverError.status).send(error.serverError.response);
+            throw Error(err);
+        }
+        if (!user) {
+            res.status(error.forbidden.status).send(error.forbidden.response);
+            throw Error();
+        }
+        res.send(user);
+    })(req, res);
+}
+
+//POST: /checkemail
+exports.checkemail = async (req, res) => {
+    let isUnique = await Aluno.isUniqueEmail(req.body.email)
+        .catch(err => {
+            let errorHandler = error.serverError;
+            errorHandler.response.error = err;
+            res.status(errorHandler.status).send(errorHandler.response);
+            throw Error(err);
+        });
+    if (isUnique)
+        res.status(success.ok.status).send(success.ok.response);
+    else
+        res.status(error.alreadyExist.status).send(error.alreadyExist.response);
+}
 
 // GET: /:id
-exports.details = (req, res, next) => {
-// var nada = async function() {
-//     console.log("teste")
-//     const { Aluno } = require('./src/models');
-//     var alunos = await Aluno.findAll({ where: { teste: 'oi'}}).catch(err => console.log("DEU ERRO"))
-//     console.log("Alunos");
-//     console.log(alunos)
-// //     next()
-// }
-// nada()
+exports.details = async (req, res) => {
+    let id = req.params.id;
+    let aluno = await Aluno.findOne({ where: { id: id } })
+        .catch(err => {
+            let errorHandler = error.serverError;
+            errorHandler.response.error = err;
+            res.status(errorHandler.status).send(errorHandler.response);
+            throw Error(err);
+        })
 
-// Aluno.create({ nome: 'Claudio', email: 'claudio@abc.com.br', senha: '123456', criado_em: new Date() })
-//     .then(task => {
-//         console.log(task)
-//     })
-//     .catch(err => {
-//         console.log(err)
-//     })
-    let id = req.params.id;
-    res.status(201).send(`Aluno Exibido! ${id}`);
+    res.status(success.ok.status).send(aluno);
 };
-exports.post = (req, res, next) => {
-    res.status(201).send('Aluno Cadastrado!');
+
+//POST: 
+exports.post = async (req, res) => {
+    let isUnique = await Aluno.isUniqueEmail(req.body.email)
+        .catch(err => {
+            let errorHandler = error.serverError;
+            errorHandler.response.error = err;
+            res.status(errorHandler.status).send(errorHandler.response);
+            throw Error(err);
+        });
+
+    if (isUnique) {
+        let aluno = await Aluno.create(req.body)
+            .catch(err => {
+                let errorHandler = error.serverError;
+                errorHandler.response.error = err;
+                res.status(errorHandler.status).send(errorHandler.response);
+                throw Error(err);
+            });
+        res.status(success.created.status).send(aluno);
+    }
+    else {
+        res.status(error.alreadyExist.status).send(error.alreadyExist.response);
+    }
+
 };
-exports.put = (req, res, next) => {
+//PUT: /update/:id
+exports.put = (req, res) => {
     let id = req.params.id;
-    res.status(201).send(`Aluno atualizado! ${id}`);
+    res.status(error.notImplemented.status).send(error.notImplemented.response);
 };
-exports.delete = (req, res, next) => {
+
+// DELETE: /delete/:id
+exports.delete = (req, res) => {
     let id = req.params.id;
-    res.status(200).send(`Aluno deletado! ${id}`);
+    res.status(error.notImplemented.status).send(error.notImplemented.response);
 };
