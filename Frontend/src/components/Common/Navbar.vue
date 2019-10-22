@@ -3,9 +3,13 @@
     <!-- Logo -->
     <a to="dashboard" class="logo">
       <!-- mini logo - 50x50 pixels -->
-      <span class="logo-mini"><b>A</b>LT</span>
+      <span class="logo-mini">        
+        <img src="../../../static/img/logos/logo-mini.png">
+      </span>
       <!-- logo normal -->
-      <span class="logo-lg"><b>Admin</b>LTE</span>
+      <span class="logo-lg">
+        <img src="../../../static/img/logos/logo-lg.png">
+      </span>
     </a>
 
     <!-- Cabeçalho -->
@@ -21,20 +25,22 @@
           <li class="dropdown notifications-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-bell-o"></i>
-              <!-- <span class="label label-warning">{{ unreadNotificationsCount }}</span> -->
+              <span class="label label-warning">{{ unreadNotificationsCount }}</span>
             </a>
             <ul class="dropdown-menu">
-              <!-- <li class="header">You have {{ unreadNotificationsCount }} notifications</li> -->
+              <li class="header">Você tem {{ unreadNotificationsCount }} notificações</li>
               <li>
                 <ul class="menu">
-                  <li>
+                  <!-- Notificações -->
+                  <li v-for="notification in notifications" :key="notification.id">
                     <a href="#">
-                      5 new members joined today
+                      {{notification.message}}
                     </a>
                   </li>
+                  <!--  -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">View all</a></li>
+              <li class="footer"><a href="#">Ver todas</a></li>
             </ul>
           </li>
         </ul>
@@ -48,17 +54,23 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
-
 export default {
-//   computed: {
-//     ...mapGetters([
-//       'unreadMessagesCount',
-//       'unreadNotificationsCount',
-//       'remainTasksCount',
-//       'currentUser'
-//     ])
-//   }
+  data() {
+    return {
+      unreadNotificationsCount: 3,
+      notifications: [
+        {id: 1, message: 'Teste de notificação 1'},
+        {id: 2, message: 'Teste de notificação 2'},
+        {id: 3, message: 'Teste de notificação 3'},
+      ]
+    }
+  }
 }
-
 </script>
+
+<style scoped>
+.header {
+  background: rgb(215, 224, 211) !important;
+  font-weight: bold;
+}
+</style>
