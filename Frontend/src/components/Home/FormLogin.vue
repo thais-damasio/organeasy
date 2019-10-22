@@ -1,5 +1,10 @@
 <template>
   <div>
+    <div v-if="errorMessage" class="uk-alert-danger" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>{{errorMessage}}</p>
+    </div>
+
     <h3 class="uk-card-title uk-margin-remove">Olá!</h3>
     <p class="uk-margin-small">Para continuar organizando suas atividades faça seu login.</p>
     <form @submit.prevent.stop="login()">
@@ -68,19 +73,27 @@ export default {
             email: '',
             senha: ''
           },
-          isLoading: false
+          isLoading: false,
+          errorMessage: null
       }
   },
   // Métodos da aplicação
   methods: {
-    login() {
+    async login() {
       this.$v.$touch()
       if (!this.$v.$invalid) {
-        // do your submit logic here
-        this.isLoading = true;
-        setTimeout(() => {
+        try {
+          this.isLoading = true;
+          this.errorMessage = null;
+
+          let user = await this.$http.post(process.env.API_URL + 'aluno/login', this.user);
           this.isLoading = false;
-        }, 2000)
+          console.log(user)
+        }
+        catch(e){
+          this.errorMessage = e.body.message;
+          this.isLoading = false;
+        }
       }
     },
     validationMsg: validationMessage(formMessages)
