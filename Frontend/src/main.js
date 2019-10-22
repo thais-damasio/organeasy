@@ -5,6 +5,8 @@ import App from './App'
 import router from './router'
 import VueResource from 'vue-resource'
 import Vuelidate from 'vuelidate'
+import '@/components/lib/css'
+import '@/components/lib/script'
 
 
 Vue.use(VueResource);

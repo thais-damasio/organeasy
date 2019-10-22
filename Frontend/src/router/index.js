@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import LoginPage from '@/components/Home/LoginPage'
 import FormRegister from '@/components/Home/FormRegister'
 import FormLogin from '@/components/Home/FormLogin'
+import DashboardPage from '@/components/Dashboard/DashboardPage'
 
 Vue.use(Router)
 
@@ -18,8 +19,11 @@ export default new Router({
       }]
     },
     {
-      // TODO
-      path: '*', name: 'notFound', redirect: 'login'
+      path: '/dashboard', name: 'dashboard', component: DashboardPage
     }
+    // {
+    //   // TODO
+    //   path: '*', name: 'notFound', redirect: 'login'
+    // }
   ]
 })
