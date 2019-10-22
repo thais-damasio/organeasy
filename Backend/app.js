@@ -7,9 +7,10 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const app = express();
-require('dotenv').config()
 require('./src/middlewares/auth')(passport);
 const cors = require('./src/middlewares/cors');
+if (process.env.NODE_ENV !== 'production')
+  require('dotenv').config()
 
 // Demais configurações
 let sessionData = {

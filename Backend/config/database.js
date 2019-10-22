@@ -1,4 +1,5 @@
-require('dotenv/config');
+if (process.env.NODE_ENV !== 'production')
+  require('dotenv/config');
 
 module.exports = {
     username: process.env.DB_USERNAME,
