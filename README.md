@@ -22,10 +22,9 @@ Desta forma colocamos em prática conceitos adquiridos ao longo da formação da
 ***
 Equipe
 ------
-* Gabrielle Alcantara (FullStack)
-* Guilherme Vianna (Gerente de Projeto)
+* Guilherme Vianna (Fullstack)
 * Luiz Felipe (Tester)
-* Thaís Damásio (FrontEnd)
+* Thaís Damásio (FrontEnd e Gerente de Projeto)
 * Vinícius Pacheco (BackEnd)
 ***
 Especificação
