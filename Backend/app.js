@@ -7,16 +7,18 @@ const express = require('express');
 const logger = require('morgan');
 const path = require('path');
 const app = express();
+require('dotenv').config()
 require('./src/middlewares/auth')(passport);
-
+const cors = require('./src/middlewares/cors');
 
 // Demais configurações
-app.use(session({
-    secret:'MyK3y',
-    saveUninitialized:true,
-    resave:true,
-    cookie: {maxAge: 30000}
-}));
+let sessionData = {
+  secret: process.env.SESSION_KEY || 'MyK3y',
+  saveUninitialized:process.env.SESSION_SAVEUNINITIALIZED || true,
+  resave:process.env.SESSION_RESAVE || true,
+  cookie: {maxAge: 30000}
+}
+app.use(session(sessionData));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
@@ -26,13 +28,14 @@ app.use(express.json({
       JSON.parse(buf);
     } catch(e) {
       res.status(error.badrequest.status).send(error.badrequest.response);
-      throw Error('invalid JSON');
+      throw Error('Invalid JSON');
     }
   }
 }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(cors);
 
 
 // Rotas da aplicação

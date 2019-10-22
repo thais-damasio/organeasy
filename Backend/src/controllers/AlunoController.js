@@ -57,14 +57,25 @@ exports.post = async (req, res) => {
         });
 
     if (isUnique) {
-        let aluno = await Aluno.create(req.body)
+        await Aluno.create(req.body)
             .catch(err => {
                 let errorHandler = error.serverError;
                 errorHandler.response.error = err;
                 res.status(errorHandler.status).send(errorHandler.response);
                 throw Error(err);
             });
-        res.status(success.created.status).send(aluno);
+        
+        passport.authenticate('local', function (err, user, info) {
+            if (err) {
+                res.status(error.serverError.status).send(error.serverError.response);
+                throw Error(err);
+            }
+            if (!user) {
+                res.status(error.forbidden.status).send(error.forbidden.response);
+                throw Error();
+            }
+            res.status(success.created.status).send(user);
+        })(req, res);
     }
     else {
         res.status(error.alreadyExist.status).send(error.alreadyExist.response);
