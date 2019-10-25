@@ -1,5 +1,13 @@
 <template>
-  <router-link tag="li" v-if="router && router.name" :to="router">
+  <li tag="li" v-if="logout" @click.prevent.stop="logOut()">
+    <a href="#">
+      <i :class="icon"></i> <span>{{ name }}</span>
+      <span class="pull-right-container" v-show="badge">
+        <small class="label pull-right" :class="[badge.type==='String'?'bg-green':'label-primary']">{{ badge.data }}</small>
+      </span>
+    </a>
+  </li>
+  <router-link tag="li" v-else-if="router && router.name" :to="router">
     <a href="#">
       <i :class="icon"></i> <span>{{ name }}</span>
       <span class="pull-right-container" v-show="badge">
@@ -16,18 +24,6 @@
         <i v-else class="fa fa-angle-left pull-right"></i>
       </span>
     </a>
-    <ul class="treeview-menu" v-if="items.length > 0">
-      <router-link tag="li" v-for="(item,index) in items" :data="item" :key="index" :to="item.router" v-if="item.router && item.router.name">
-        <a>
-          <i :class="item.icon"></i> {{ item.name }}
-        </a>
-      </router-link>
-      <li v-else>
-        <a>
-          <i :class="item.icon"></i> {{ item.name }}
-        </a>
-      </li>
-    </ul>
   </li>
 </template>
 
@@ -70,13 +66,20 @@ export default {
         }
       }
     },
+    logout: {
+      type: Boolean,
+      default: false
+    },
     link: {
       type: String,
       default: ''
     }
   },
-  created () {
-
+  methods: {
+    logOut() {
+      this.$session.destroy()
+      this.$router.push('login')
+    }
   },
   computed: {
     getType () {

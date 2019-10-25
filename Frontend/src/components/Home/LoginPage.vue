@@ -53,8 +53,12 @@
 //Imagens
 
 export default {
-  data: function() {
-    return {};
+  // Lifecycles
+  //Redireciona usuário autenticado
+  beforeCreate: function () {
+    if (this.$session.exists()) {
+      this.$router.push('dashboard')
+    }
   }
 };
 </script>

@@ -86,9 +86,17 @@ export default {
           this.isLoading = true;
           this.errorMessage = null;
 
-          let user = await this.$http.post(process.env.API_URL + 'aluno/login', this.user);
+          // Autentica o usuário
+          let response = await this.$http.post(process.env.API_URL + 'aluno/login', this.user);
           this.isLoading = false;
-          console.log(user)
+          
+          // Armazena a sessão
+          this.$session.start();
+          this.$session.set('jwt', response.body.token);
+          this.$session.set('credential', response.body.user);
+          
+          // Redireciona para a página de dashboard
+          this.$router.push('dashboard');
         }
         catch(e){
           this.errorMessage = e.body.message;

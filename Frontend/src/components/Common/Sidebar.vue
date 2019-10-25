@@ -5,10 +5,17 @@
       <!-- Dados do usuário -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img :src="currentUser.avatar" class="img-circle">
+          <img :src="'static/img/avatar/' + (currentUser.avatar.path || noneAvatar)" class="img-circle">
         </div>
         <div class="pull-left info">
-          <p>{{ currentUser.name }}</p>
+          <!-- Nome do usuário -->
+          <content-placeholders :rounded="true" v-if="!currentUser.nome">
+            <content-placeholders-text :lines="1" />
+          </content-placeholders>
+          <p v-else>
+            {{ currentUser.nome }}
+          </p>
+          <!--  -->
           <span>{{currentDate}}</span>
         </div>
       </div>
@@ -27,6 +34,7 @@
           :items="item.items"
           :router="item.router"
           :link="item.link"
+          :logout="item.logout"
         >
         </sidebar-item>
       </ul>
@@ -36,10 +44,15 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import sidebarItems from './SidebarItem'
+let noneAvatar = require('../../../static/img/avatar/none.svg');
 
 export default {
+  data() {
+    return {
+      noneAvatar: noneAvatar
+    }
+  },
   props: {
     menuItems: {
       type: Array,

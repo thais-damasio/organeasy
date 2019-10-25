@@ -16,10 +16,18 @@ export default {
   data () {
     return {
       menuItems: MenuItems,
-      currentUser: {
-            avatar: '../../static/img/avatar/girl1.svg',
-            name: 'Alexander Pierce'
-        }
+      currentUser: {}
+    }
+  },
+  // Lifecycles
+  // Busca dados do usuário logado
+  created() {
+    this.currentUser = this.$session.get('credential');
+  },
+  //Redireciona usuário autenticado
+  beforeCreate: function () {
+    if (!this.$session.exists()) {
+      this.$router.push('login')
     }
   },
   components: {
