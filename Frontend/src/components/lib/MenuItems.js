@@ -51,8 +51,6 @@ module.exports = [
     type: 'item',
     icon: 'fa fa-sign-out',
     name: 'Sair',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
+    logout: true
   },
 ]

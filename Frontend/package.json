@@ -23,8 +23,10 @@
     "popper.js": "^1.16.0",
     "uikit": "^3.0.0-beta.25",
     "vue": "^2.3.3",
+    "vue-content-placeholders": "^0.2.1",
     "vue-resource": "^1.5.1",
     "vue-router": "^2.3.1",
+    "vue-session": "^1.0.0",
     "vuelidate": "^0.7.4",
     "vuelidate-messages": "^0.1.0"
   },

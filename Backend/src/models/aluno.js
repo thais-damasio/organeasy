@@ -20,6 +20,9 @@ module.exports = (sequelize, DataTypes) => {
           user.senha = senhaCrypt;
           user.criado_em = new Date();
           user.atualizado_em = new Date();
+        },
+        beforeUpdate: (data, options) => {
+          data.atualizado_em = new Date();
         }
       },
       timestamps: false,

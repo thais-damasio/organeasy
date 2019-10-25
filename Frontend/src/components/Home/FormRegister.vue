@@ -1,5 +1,10 @@
 <template>
   <form @submit.prevent.stop="cadastrar()">
+    <div v-if="errorMessage" class="uk-alert-danger" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <p>{{errorMessage}}</p>
+    </div>
+    
     <!-- Avatar do usuário -->
     <div class="uk-grid-small uk-flex-middle" uk-grid>
       <div class="uk-width-auto">
@@ -8,14 +13,14 @@
           class="uk-border-circle"
           width="70"
           height="70"
-          :src="'static/img/avatar/' + user.avatar"
+          :src="'static/img/avatar/' + (user.avatar? user.avatar.path : 'none.svg')"
         />
       </div>
       <!-- Select -->
       <div uk-form-custom="target: > * > span:last-child">
-        <select name="avatar" @change="chooseAvatar()" v-model="user.avatar">
-          <option selected disabled>Escolha um avatar...</option>
-          <option v-for="avatar in avatars" :key="avatar.value" :value="avatar.value">{{avatar.name}}</option>
+        <select name="avatar" v-model="user.avatar">
+          <option selected disabled :value="null">Escolha um avatar...</option>
+          <option v-for="avatar in avatars" :key="avatar.id" :value="avatar">{{avatar.nome}}</option>
         </select>
         <span class="uk-link">
           <span uk-icon="icon: pencil"></span>
@@ -87,32 +92,46 @@ export default {
   data: function() {
     return {
       avatars: [
-        { name: "Nenhum", value: "none.svg" },
-        { name: "Garoto 01", value: "boy1.svg" },
-        { name: "Garoto 02", value: "boy2.svg" },
-        { name: "Garota 01", value: "girl1.svg" },
-        { name: "Garota 02", value: "girl2.svg" },
-        { name: "Garota 03", value: "girl3.svg" }
+        { id: null, nome: "Nenhum", path: "none.svg" }
       ],
       user: {
-        avatar: "none.svg",
+        avatar: null,
         nome: "",
         email: "",
         senha: ""
       },
+      errorMessage: null,
       isLoading: false
     };
   },
   // Métodos da aplicação
   methods: {
-    cadastrar() {
+    async cadastrar() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
-        // do your submit logic here
-        this.isLoading = true;
-        setTimeout(() => {
+        try {
+          this.isLoading = true;
+          this.errorMessage = null;
+
+          // Cria o usuário
+          this.user.id_avatar = this.user.avatar.id;
+          delete this.user.avatar;
+          let response = await this.$http.post(process.env.API_URL + 'aluno/create', this.user);
           this.isLoading = false;
-        }, 2000);
+
+          // Armazena a sessão
+          this.$session.start();
+          this.$session.set('jwt', response.body.token);
+          this.$session.set('credential', response.body.user);
+
+          // Redireciona para a página de dashboard
+          this.$router.push('dashboard');
+        }
+        catch(e){
+          console.log(e)
+          this.errorMessage = e.body.message;
+          this.isLoading = false;
+        }   
       }
     },
     validationMsg: validationMessage(formMessages)
@@ -137,7 +156,21 @@ export default {
         maxLength: maxLength(255)
       }
     }
-  }
+  },
+  // Lifecycles
+  // Busca dados do usuário logado
+  created() {
+    this.$http.get(process.env.API_URL + 'avatar')
+    .then(
+      avatares => {
+        avatares.body.data.forEach(avatar => {
+          this.avatars.push(avatar);
+        });
+      },
+      err => {
+        this.errorMessage = err.body.message;
+      });
+  },
 };
 </script>
 

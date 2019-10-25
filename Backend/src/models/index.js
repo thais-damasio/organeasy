@@ -4,7 +4,12 @@ const Sequelize = require('sequelize');
 const config = require('../../config/database.js');
 
 const db = {};
-const sequelize = new Sequelize(config);
+let sqlDB;
+if(process.env.NODE_ENV === "production")
+  sqlDB = new Sequelize(config.production);
+else
+  sqlDB = new Sequelize(config.development);
+const sequelize = sqlDB;
 
 fs
   .readdirSync(__dirname)

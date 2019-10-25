@@ -1,8 +1,8 @@
+const controller = require('../controllers/AlunoController')
+const { celebrate, Joi } = require('celebrate');
+const passport = require('passport');
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/AlunoController')
-const authenticate = require('../middlewares/Authenticate');
-const { celebrate, Joi } = require('celebrate');
 
 // Login
 router.post('/login', 
@@ -36,13 +36,13 @@ router.post('/create/',
  controller.post);
 
 // Detalhes
-router.get('/get/:id', [authenticate], controller.details);
+router.get('/get/:id', [passport.authenticate('jwt', {session: false})], controller.details);
 
 // Atualização
-router.put('/update/:id', [authenticate], controller.put);
+router.put('/update/:id', [passport.authenticate('jwt', {session: false})], controller.put);
 
 // Remoção
-router.delete('/delete/:id', [authenticate], controller.delete);
+router.delete('/delete/:id', [passport.authenticate('jwt', {session: false})], controller.delete);
 
 
 module.exports = router;

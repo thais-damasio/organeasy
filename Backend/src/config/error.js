@@ -17,10 +17,15 @@ module.exports = {
     },
     forbidden: {
         status: 403,
-        response: {
+        responseEmail: {
             statusCode: 403,
             error: 'FORBIDDEN',
-            message: 'Usuário ou senha incorreto(a)!'
+            message: 'E-mail informado não está cadastrado no sistema!',
+        },
+        responsePswd: {
+            statusCode: 403,
+            error: 'FORBIDDEN',
+            message: 'Senha incorreta!',
         }
     },
     alreadyExist: {
@@ -62,5 +67,16 @@ module.exports = {
             error: 'SERVERUNAVAILABLE',
             message: 'Servidor indisponível!'
         }
+    },
+    customServerError : function(err) {
+        let customError = {
+            status: 500,
+            response: {
+                statusCode: 500,
+                error: err.toString(),
+                message: 'Ocorreu um erro inesperado!'
+            }
+        }
+        return customError;
     }
 }
