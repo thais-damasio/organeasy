@@ -1,6 +1,9 @@
 const path = require('path');
+if (process.env.NODE_ENV !== 'production')
+  require('dotenv').config()
 
 module.exports = {
+  'env': process.env.NODE_ENV,
   'config': path.resolve('config', 'database.js'),
   'models-path': path.resolve('src', 'models'),
   'seeders-path': path.resolve('database', 'seeders'),

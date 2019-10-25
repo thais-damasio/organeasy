@@ -9,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     // Configurações
     {
+      hooks: {
+        beforeCreate: (data, options) => {
+          data.criado_em = new Date();
+          data.atualizado_em = new Date();
+        },
+        beforeUpdate: (data, options) => {
+          data.atualizado_em = new Date();
+        }
+      },
       timestamps: false,
       freezeTableName: false,
       tableName: 'Checklist',

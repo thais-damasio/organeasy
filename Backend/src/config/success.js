@@ -4,7 +4,8 @@ module.exports = {
         response: {
             statusCode: 200,
             success: 'OK',
-            message: 'Requisição bem sucedida!'
+            message: 'Requisição bem sucedida!',
+            data: ''
         }
     },
     created: {
@@ -12,7 +13,8 @@ module.exports = {
         response: {
             statusCode: 201,
             success: 'CREATED',
-            message: 'Requisição bem sucedida e recurso solicitado criado!'
+            message: 'Requisição bem sucedida e recurso solicitado criado!',
+            data: ''
         }
     }
 }
