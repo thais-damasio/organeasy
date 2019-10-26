@@ -2,11 +2,26 @@ module.exports = (sequelize, DataTypes) => {
     const Curso = sequelize.define('Curso', 
     // Atributos
     {
-      nome: DataTypes.STRING(255),
-      tem_materias: DataTypes.BOOLEAN,
-      id_aluno: DataTypes.INTEGER,
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE,
+      nome: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      tem_materias: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
+      id_aluno: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {

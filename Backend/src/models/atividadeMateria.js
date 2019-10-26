@@ -2,11 +2,26 @@ module.exports = (sequelize, DataTypes) => {
     const AtividadeMateria = sequelize.define('AtividadeMateria', 
     // Atributos
     {
-      id_materia: DataTypes.INTEGER,
-      id_atividade: DataTypes.INTEGER,
-      tem_pontos: DataTypes.BOOLEAN,
-      valor: DataTypes.DOUBLE,
-      valor_ganho: DataTypes.DOUBLE,
+      id_materia: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      id_atividade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      tem_pontos: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false
+      },
+      valor: {
+        type: DataTypes.DOUBLE,
+        allowNull: true
+      },
+      valor_ganho: {
+        type: DataTypes.DOUBLE,
+        allowNull: true
+      },
     },
     // Configurações
     {

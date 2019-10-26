@@ -5,12 +5,30 @@ module.exports = (sequelize, DataTypes) => {
   const Aluno = sequelize.define('Aluno',
     // Atributos
     {
-      nome: DataTypes.STRING(255),
-      email: DataTypes.STRING(255),
-      senha: DataTypes.STRING(255),
-      id_avatar: DataTypes.INTEGER,
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE,
+      nome: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      email: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      senha: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      id_avatar: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+      },
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {
@@ -32,8 +50,9 @@ module.exports = (sequelize, DataTypes) => {
 
   // Associações
   Aluno.associate = function (models) {
-    models.Aluno.belongsTo(models.Avatar, { as: 'avatar', targetKey: 'id', foreignKey: 'id_avatar' })
-    models.Aluno.hasMany(models.Curso, { as: 'cursos' })
+    models.Aluno.belongsTo(models.Avatar, { as: 'avatar', targetKey: 'id', foreignKey: 'id_avatar' });
+    models.Aluno.hasMany(models.Curso, { as: 'cursos', targetKey: 'id', foreignKey: 'id_aluno' });
+    models.Aluno.hasMany(models.AtividadeLazer, {as: 'atividadesLazer', targetKey: 'id', foreignKey: 'id_aluno'});
   };
   // Métodos de instância
   Aluno.prototype.validPassword = function (password) {

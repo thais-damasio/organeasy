@@ -2,10 +2,10 @@ const { error, success } = require('../config');
 const { Aluno } = require('../models');
 const jwt = require('jsonwebtoken');
 
-// POST: /login
+// POST: /login/
 exports.login = async (req, res) => {
     try {
-        let aluno = await Aluno.findOne({where: {email: req.body.email}});
+        let aluno = await Aluno.findOne({where: {email: req.body.email}, include: [{association: 'avatar'}]});
         
         if (!aluno) {
             res.status(error.forbidden.status).send(error.forbidden.responseEmail);
@@ -41,7 +41,7 @@ exports.login = async (req, res) => {
     }
 }
 
-//POST: /checkemail
+//POST: /checkemail/
 exports.checkemail = async (req, res) => {
     try {
         let isUnique = await Aluno.isUniqueEmail(req.body.email);
@@ -56,11 +56,10 @@ exports.checkemail = async (req, res) => {
     }
 }
 
-// GET: /:id
+// GET: /get/
 exports.details = async (req, res) => {
-    let id = req.params.id;
     try {
-        let aluno = await Aluno.findOne({ where: { id: id } });        
+        let aluno = await Aluno.findOne({ where: { id: req.user.id }, include: [{association: 'avatar'}] });        
         res.status(success.ok.status).send(aluno || {});
     }
     catch(e){
@@ -69,7 +68,7 @@ exports.details = async (req, res) => {
     }
 };
 
-//POST: 
+//POST: /create/
 exports.post = async (req, res) => {
     try {
         let isUnique = await Aluno.isUniqueEmail(req.body.email);
@@ -105,13 +104,13 @@ exports.post = async (req, res) => {
 
 };
 
-//PUT: /update/:id
+//PUT: /update/
 exports.put = (req, res) => {
     let id = req.params.id;
     res.status(error.notImplemented.status).send(error.notImplemented.response);
 };
 
-// DELETE: /delete/:id
+// DELETE: /delete/
 exports.delete = (req, res) => {
     let id = req.params.id;
     res.status(error.notImplemented.status).send(error.notImplemented.response);

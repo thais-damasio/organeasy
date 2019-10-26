@@ -2,11 +2,27 @@ module.exports = (sequelize, DataTypes) => {
     const OpcaoChecklist = sequelize.define('OpcaoChecklist', 
     // Atributos
     {
-      id_checklist: DataTypes.INTEGER,
-      descricao: DataTypes.STRING(255),
-      feito: DataTypes.BOOLEAN,
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE
+      id_checklist: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      descricao: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      feito: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        default: false
+      },
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {

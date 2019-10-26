@@ -29,14 +29,6 @@ module.exports = {
           key: 'id'
         },
       },
-      nome: {
-        allowNull: false,
-        type: Sequelize.STRING(255),
-      },
-      tem_materias: {
-        allowNull: false,
-        type: Sequelize.BOOLEAN
-      },
       tem_pontos: {
         allowNull: false,
         type: Sequelize.BOOLEAN

@@ -17,6 +17,11 @@ module.exports = {
     },
     forbidden: {
         status: 403,
+        responseDenied: {
+            statusCode: 403,
+            error: 'FORBIDDEN',
+            message: 'O usuário da requisição só pode acessar e manipular dados que pertencem a ele!',
+        },
         responseEmail: {
             statusCode: 403,
             error: 'FORBIDDEN',
@@ -78,5 +83,27 @@ module.exports = {
             }
         }
         return customError;
+    },
+    customNotFound : function(message) {
+        let customNotFound = {
+            status: 404,
+            response: {
+                statusCode: 404,
+                error: 'NOTFOUND',
+                message: message || 'Página solicitada não encontrada!'
+            }
+        }
+        return customNotFound;
+    },
+    customForbidden : function(message) {
+        let customForbidden = {            
+            status: 403,
+            response: {
+                statusCode: 403,
+                error: 'FORBIDDEN',
+                message: message,
+            }
+        }
+        return customForbidden;
     }
 }

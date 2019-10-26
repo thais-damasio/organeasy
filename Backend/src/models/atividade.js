@@ -2,12 +2,31 @@ module.exports = (sequelize, DataTypes) => {
   const Atividade = sequelize.define('Atividade',
     // Atributos
     {
-      titulo: DataTypes.STRING(255),
-      descricao: DataTypes.STRING(255),
-      concluida: DataTypes.BOOLEAN,
-      data_entrega: DataTypes.DATE,
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE
+      titulo: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      descricao: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      concluida: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+        default: false
+      },
+      data_entrega: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {

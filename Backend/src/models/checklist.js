@@ -4,8 +4,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       id_atividade: DataTypes.INTEGER,
       nome: DataTypes.STRING(255),
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {

@@ -5,7 +5,7 @@ const express = require('express');
 const router = express.Router();
 
 // Login
-router.post('/login', 
+router.post('/login/', 
 [celebrate({
     body: Joi.object().keys({
       email: Joi.string().max(255).required(),
@@ -36,13 +36,19 @@ router.post('/create/',
  controller.post);
 
 // Detalhes
-router.get('/get/:id', [passport.authenticate('jwt', {session: false})], controller.details);
+router.get('/get/',
+[passport.authenticate('jwt', {session: false})],
+controller.details);
 
-// Atualização
-router.put('/update/:id', [passport.authenticate('jwt', {session: false})], controller.put);
+// TODO: Atualização
+router.put('/update/',
+[passport.authenticate('jwt', {session: false})],
+controller.put);
 
-// Remoção
-router.delete('/delete/:id', [passport.authenticate('jwt', {session: false})], controller.delete);
+// TODO: Remoção
+router.delete('/delete/',
+[passport.authenticate('jwt', {session: false})],
+controller.delete);
 
 
 module.exports = router;

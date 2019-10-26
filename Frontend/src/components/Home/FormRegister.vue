@@ -44,7 +44,7 @@
     <div class="uk-margin">
       <div class="uk-inline uk-width-1-1" :class="{ 'form-group-error': $v.user.email.$error }">
         <span class="uk-form-icon" uk-icon="icon: mail"></span>
-        <input class="uk-input" placeholder="E-mail" type="email" v-model="user.email" />
+        <input class="uk-input" @blur="validarEmail()" placeholder="E-mail" type="email" v-model="user.email" />
       </div>
       <span v-if="$v.user.email.$error" class="error-message">{{validationMsg($v.user.email)}}</span>
     </div>
@@ -61,7 +61,7 @@
     <!-- Submits -->
     <div class="uk-text-center">
       <button
-        :disabled="isLoading || $v.$error"
+        :disabled="isLoading || $v.$error || emailJaExiste"
         type="submit"
         class="uk-button uk-button-primary"
         :class="{ 'btn-loading': isLoading}"
@@ -100,12 +100,28 @@ export default {
         email: "",
         senha: ""
       },
+      emailJaExiste: false,
       errorMessage: null,
       isLoading: false
     };
   },
   // Métodos da aplicação
   methods: {
+    async validarEmail() {
+      try {
+        if(this.user.email && !this.$v.user.email.$invalid) {
+          let response = await this.$http.post(process.env.API_URL + 'aluno/checkemail', {email: this.user.email});
+          if(response.body.success == 'OK'){
+            this.emailJaExiste = false;
+            this.errorMessage = null;
+          }
+        }
+      }
+      catch(e) {
+          this.emailJaExiste = true;
+          this.errorMessage = e.body.message;
+      }
+    },
     async cadastrar() {
       this.$v.$touch();
       if (!this.$v.$invalid) {
@@ -128,7 +144,6 @@ export default {
           this.$router.push('dashboard');
         }
         catch(e){
-          console.log(e)
           this.errorMessage = e.body.message;
           this.isLoading = false;
         }   

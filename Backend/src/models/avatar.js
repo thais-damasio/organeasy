@@ -2,10 +2,22 @@ module.exports = (sequelize, DataTypes) => {
     const Avatar = sequelize.define('Avatar', 
     // Atributos
     {
-      nome: DataTypes.STRING(255),
-      path: DataTypes.STRING(255),
-      criado_em: DataTypes.DATE,
-      atualizado_em: DataTypes.DATE,
+      nome: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      path: {
+        type: DataTypes.STRING(255),
+        allowNull: false
+      },
+      criado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      },
+      atualizado_em: {
+        type: DataTypes.DATE,
+        allowNull: true
+      }
     },
     // Configurações
     {

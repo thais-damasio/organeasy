@@ -2,7 +2,14 @@ module.exports = (sequelize, DataTypes) => {
     const AtividadeLazer = sequelize.define('AtividadeLazer', 
     // Atributos
     {
-      id_atividade: DataTypes.INTEGER
+      id_atividade: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      },
+      id_aluno: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+      }
     },
     // Configurações
     {
@@ -13,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
 
     //Associações
     AtividadeLazer.associate = function(models) {
-      AtividadeLazer.belongsTo(models.Curso, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
+      AtividadeLazer.belongsTo(models.Atividade, {as: 'atividade', targetKey: 'id', foreignKey: 'id_atividade'});
+      AtividadeLazer.belongsTo(models.Aluno, {as: 'aluno', targetKey: 'id', foreignKey: 'id_aluno'});
     };
   
     return AtividadeLazer;
