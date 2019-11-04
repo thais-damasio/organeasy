@@ -96,7 +96,7 @@ export default {
           this.$session.set('credential', response.body.user);
           
           // Redireciona para a página de dashboard
-          this.$router.push('dashboard');
+          this.$router.push({ name: 'dashboard'});
         }
         catch(e){
           this.errorMessage = e.body.message;

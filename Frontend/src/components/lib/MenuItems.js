@@ -7,17 +7,17 @@ module.exports = [
     type: 'item',
     icon: 'fa fa-home',
     name: 'Home',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
+    router: {
+      name: 'dashboard'
+    }
   },
   {
     type: 'item',
     icon: 'fa fa-calendar',
     name: 'Cursos e Atividades',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
+    router: {
+      name: 'cursos'
+    }
   },
   {
     type: 'item',

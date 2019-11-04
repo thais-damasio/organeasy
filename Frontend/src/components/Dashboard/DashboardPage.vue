@@ -27,7 +27,7 @@ export default {
   //Redireciona usuário autenticado
   beforeCreate: function () {
     if (!this.$session.exists()) {
-      this.$router.push('login')
+      this.$router.push({ name: 'login'})
     }
   },
   components: {

@@ -77,8 +77,8 @@ export default {
   },
   methods: {
     logOut() {
-      this.$session.destroy()
-      this.$router.push('login')
+      this.$session.destroy();
+      this.$router.push({ name: 'login'})
     }
   },
   computed: {

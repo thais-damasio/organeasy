@@ -57,7 +57,7 @@ export default {
   //Redireciona usuário autenticado
   beforeCreate: function () {
     if (this.$session.exists()) {
-      this.$router.push('dashboard')
+      this.$router.push({ name: 'dashboard'})
     }
   }
 };

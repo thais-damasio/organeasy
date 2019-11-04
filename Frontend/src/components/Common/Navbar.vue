@@ -69,6 +69,12 @@ export default {
 </script>
 
 <style scoped>
+.main-header{
+    position: fixed;
+    width: available !important;
+    width: -moz-available !important;          /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available !important;  /* Mozilla-based browsers will ignore this. */
+}
 .header {
   background: rgb(215, 224, 211) !important;
   font-weight: bold;

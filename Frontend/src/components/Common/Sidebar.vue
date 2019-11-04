@@ -75,3 +75,9 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+.main-sidebar{
+  position: fixed;
+}
+</style>
