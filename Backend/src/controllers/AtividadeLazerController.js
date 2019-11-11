@@ -101,7 +101,7 @@ exports.delete = async (req, res) => {
     try {
         let atividadeLazer = await AtividadeLazer.findOne({ 
             where: { 
-                id: id,
+                id_atividade: id,
                 id_aluno: req.user.id
             },
             include: [
@@ -109,7 +109,7 @@ exports.delete = async (req, res) => {
             ]
         });
         if(atividadeLazer){
-            await atividadeLazer.destroy();
+            await atividadeLazer.atividade.destroy();
             let resHttp = success.customSuccess(`A atividade de "${atividadeLazer.atividade.titulo}" foi apagada!`, null)
             res.status(resHttp.status).send(resHttp.response);
         }

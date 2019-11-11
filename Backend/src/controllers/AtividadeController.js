@@ -1,5 +1,5 @@
 const { error, success } = require('../config');
-const { Atividade, sequelize, Sequelize } = require('../models');
+const { Atividade, AtividadeCurso, AtividadeLazer, AtividadeMateria, sequelize, Sequelize } = require('../models');
 const Op = Sequelize.Op;
 
 // GET: /
@@ -325,31 +325,117 @@ exports.atividadesEstatistcas = async (req, res) => {
         let month = req.params.mes;
         let year = req.params.ano;
 
-        let atividades = await Atividade.findAll({
-            attributes: [[sequelize.fn('COUNT', sequelize.col('concluida')), 'count_concluida']],
-            where: {
-                [Op.and]: [
-                    { concluida: true },
-                    sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
-                    sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
-                ]
-            }
+        // Não concluídas
+        let n_lazer = await AtividadeLazer.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_n_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: false },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
+        });
+        let n_curso = await AtividadeCurso.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_n_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: false },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
+        });
+        let n_materia = await AtividadeMateria.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_n_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: false },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
         });
 
-        let atividadesNaoConcluidas = await Atividade.findAll({
-            attributes: [[sequelize.fn('COUNT', sequelize.col('concluida')), 'count_n_concluida']],
-            where: {
-                [Op.and]: [
-                    { concluida: false },
-                    sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
-                    sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
-                ]
-            }
+        // Concluídas
+        let lazer = await AtividadeLazer.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: true },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
+        });
+        let curso = await AtividadeCurso.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: true },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
+        });
+        let materia = await AtividadeMateria.findAll({
+            attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_concluida']],
+            include: [
+                {
+                    association: 'atividade',
+                    attributes: [],
+                    where: {
+                        [Op.and]: [
+                            { concluida: true },
+                            sequelize.where(sequelize.fn("month", sequelize.col("data_entrega")), month),
+                            sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
+                        ]
+                    }
+                }
+            ]
         });
 
         let data = {
-            atividades: atividades[0],
-            nao_concluidas: atividadesNaoConcluidas[0],
+            concluidas: {
+                lazer: lazer[0],
+                curso: curso[0], 
+                materia: materia[0]
+            },
+            nao_concluidas: {
+                lazer: n_lazer[0],
+                curso: n_curso[0], 
+                materia: n_materia[0]
+            }
         };
         let resHttp = success.customSuccess(null, data)
         res.status(resHttp.status).json(resHttp.response);

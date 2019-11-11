@@ -134,7 +134,7 @@ export default {
                         let token = this.$session.get('jwt');
 
                         // Salva os cursos e as matérias
-                        let response = await this.$http.delete(process.env.API_URL + 'atividade-curso/delete/' + this.id, {headers: {Authorization: token}});
+                        let response = await this.$http.delete(process.env.API_URL + `atividade-curso/delete/${this.dados.atividade.id}`, {headers: {Authorization: token}});
 
                         this.$swal.fire('Pronto!','Deletado com sucesso.','success');
                         // Redireciona para a página de dashboard

@@ -153,7 +153,7 @@ exports.delete = async (req, res) => {
     try {
         let atividadeMateria = await AtividadeMateria.findOne({ 
             where: { 
-                id: id
+                id_atividade: id
             },
             include: [
                 {association: 'atividade'},
@@ -169,7 +169,7 @@ exports.delete = async (req, res) => {
             ]
         });
         if(atividadeMateria){
-            await atividadeMateria.destroy();
+            await atividadeMateria.atividade.destroy();
             let resHttp = success.customSuccess(`A atividade de "${atividadeMateria.atividade.titulo}" da matéria de "${atividadeMateria.materia.nome}" foi apagada!`);
             res.status(resHttp.status).send(resHttp.response);
         }

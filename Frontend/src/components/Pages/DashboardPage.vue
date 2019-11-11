@@ -84,14 +84,14 @@ export default {
                     icon: 'fc-icon-chevron-right',
                     click: ()=> {
                         let calendarApi = this.$refs.fullCalendar.getApi();
-                        this.getAtividadesDoMes(calendarApi.getDate().getMonth() + 2, calendarApi);                        
+                        this.getAtividadesDoMes(calendarApi.getDate().getMonth() + 2, calendarApi.getDate().getFullYear(), calendarApi);                        
                     }
                 },
                 customNextButton: {
                     icon: 'fc-icon-chevron-left',
                     click: ()=> {
                         let calendarApi = this.$refs.fullCalendar.getApi();
-                        this.getAtividadesDoMes(calendarApi.getDate().getMonth(), calendarApi, true);                        
+                        this.getAtividadesDoMes(calendarApi.getDate().getMonth(), calendarApi.getDate().getFullYear(), calendarApi, true);                        
                     }
                 },
             },
@@ -108,7 +108,7 @@ export default {
         FullCalendar
     },
     methods: {
-        async getAtividadesDoMes(mes, calendarApi, isPrevious = false){
+        async getAtividadesDoMes(mes, ano, calendarApi, isPrevious = false){
             try {
                 this.errorMessage = null;
 
@@ -116,7 +116,7 @@ export default {
                 let token = this.$session.get('jwt');
 
                 // Salva os cursos e as matérias
-                let atividades = await this.$http.get(process.env.API_URL + 'atividade/by-month/' + mes, {headers: {Authorization: token}});
+                let atividades = await this.$http.get(process.env.API_URL + `atividade/by-month/${mes}/${ano}`, {headers: {Authorization: token}});
                 this.atividades = [];
 
                 atividades.body.data.atividadesCurso.forEach(atv => {

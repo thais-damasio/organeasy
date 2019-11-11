@@ -11,7 +11,7 @@
         id="donut" 
         v-if="donutData.length > 0"
         :data="donutData" 
-        colors='["#36A2EB", "#FF6384" ]' 
+        colors='["#30FFD9", "#2CE890", "#34E82C", "#E8441C", "#E81C5F", "#FF6B1F" ]' 
         resize="true"
         class="uk-align-center">
         </donut-chart>
@@ -46,10 +46,30 @@ export default {
       this.$http.get(process.env.API_URL + `atividade/estatisticas/${mes}/${ano}`, {headers: {Authorization: token}}).
       then(
         estatisticas => {
-            this.donutData = [
-                { label: 'Concluídas', value: estatisticas.body.data.atividades.count_concluida },
-                { label: 'Não Concluídas', value: estatisticas.body.data.nao_concluidas.count_n_concluida }
-            ];
+            // Concluídas
+            let lazer = estatisticas.body.data.concluidas.lazer.count_concluida;
+            let materia = estatisticas.body.data.concluidas.materia.count_concluida;
+            let curso = estatisticas.body.data.concluidas.curso.count_concluida;
+            // Não Concluídas
+            let n_lazer = estatisticas.body.data.nao_concluidas.lazer.count_n_concluida;
+            let n_materia = estatisticas.body.data.nao_concluidas.materia.count_n_concluida;
+            let n_curso = estatisticas.body.data.nao_concluidas.curso.count_n_concluida;
+
+            if(lazer > 0 ||
+               n_lazer > 0 ||
+               materia > 0 ||
+               n_materia > 0 ||
+               curso > 0 ||
+               n_curso > 0
+               )
+                this.donutData = [
+                    { label: 'Concluídas de Lazer',  value: lazer},
+                    { label: 'Concluídas de Matéria',  value: materia},
+                    { label: 'Concluídas de Curso',  value: curso},
+                    { label: 'Não Concluídas de Lazer', value: n_lazer },
+                    { label: 'Não Concluídas de Matéria', value: n_materia },
+                    { label: 'Não Concluídas de Curso', value: n_curso }
+                ];
         },
         err => {
           this.errorMessage = "Houve um erro ao carregar as estatísticas!";
