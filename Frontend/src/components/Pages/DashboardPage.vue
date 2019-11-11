@@ -13,7 +13,7 @@
                 <h4 class="uk-text-danger">Atividades da Semana</h4>
                 <ul class="uk-slider-items uk-child-width-1-1 uk-child-width-1-2@s uk-child-width-1-3@l uk-grid">
                     <template v-if="atividadesDaSemana.length > 0">
-                        <li v-for="atv in atividadesDaSemana" :key="atv.id">
+                        <li v-for="(atv, index) in atividadesDaSemana" :key="index">
                             <!-- Card de Atividade -->
                             <div class="uk-card uk-card-secondary">
                                 <div class="uk-card-body">
@@ -22,8 +22,9 @@
                                     <p class="uk-text-truncate">{{atv.descricao}}</p>
                                 </div>
                                 <div class="uk-card-footer">
-                                    <button class="uk-position-bottom-right uk-button uk-button-danger">Veja
-                                        mais...</button>
+                                    <router-link :to="{ name: atv.route, params: {id: atv.id}}" class="uk-position-bottom-right uk-button uk-button-danger">
+                                        Veja mais...
+                                    </router-link>
                                 </div>
                             </div>
                             <!--  -->
@@ -57,6 +58,7 @@
                         :weekNumbers="true"
                         :weekNumbersWithinDays="true"
                         :customButtons="buttonsCalendar"
+                        :selectable="true"
                         :header="headerCalendar"
                         defaultView="dayGridMonth"
                         :plugins="calendarPlugins"
@@ -73,12 +75,13 @@
 <script>
 import FullCalendar from '@fullcalendar/vue'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import interactionPlugin from '@fullcalendar/interaction';
 
 export default {
     data() {
         return {
             errorMessage: null,
-            calendarPlugins: [ dayGridPlugin ],
+            calendarPlugins: [ dayGridPlugin, interactionPlugin ],
             buttonsCalendar: {
                 customPrevButton: {
                     icon: 'fc-icon-chevron-right',
@@ -120,13 +123,13 @@ export default {
                 this.atividades = [];
 
                 atividades.body.data.atividadesCurso.forEach(atv => {
-                    this.atividades.push({title: atv.titulo, date: atv.data_entrega});
+                    this.atividades.push({title: atv.titulo, date: atv.data_entrega, route: 'verAtividadeCurso'});
                 });
                 atividades.body.data.atividadesLazer.forEach(atv => {
-                    this.atividades.push({title: atv.titulo, date: atv.data_entrega});
+                    this.atividades.push({title: atv.titulo, date: atv.data_entrega, route: 'verAtividadeLazer'});
                 });
                 atividades.body.data.atividadesMateria.forEach(atv => {
-                    this.atividades.push({title: atv.titulo, date: atv.data_entrega});
+                    this.atividades.push({title: atv.titulo, date: atv.data_entrega, route: 'verAtividadeMateria'});
                 });
 
                 if(isPrevious)
@@ -153,18 +156,17 @@ export default {
                 this.atividadesDaSemana = [];
 
                 atividades.body.data.atividadesCurso.forEach(atv => {
-                    this.atividadesDaSemana.push(atv);
+                    this.atividadesDaSemana.push({titulo: atv.titulo, data_entrega: atv.data_entrega, descricao: atv.descricao, id: atv.atividadesCurso[0].id, route: 'verAtividadeCurso'});
                 });
                 atividades.body.data.atividadesLazer.forEach(atv => {
-                    this.atividadesDaSemana.push(atv);
+                    this.atividadesDaSemana.push({titulo: atv.titulo, data_entrega: atv.data_entrega, descricao: atv.descricao, id: atv.atividadesLazer[0].id, route: 'verAtividadeLazer'});
                 });
                 atividades.body.data.atividadesMateria.forEach(atv => {
-                    this.atividadesDaSemana.push(atv);
+                    this.atividadesDaSemana.push({titulo: atv.titulo, data_entrega: atv.data_entrega, descricao: atv.descricao, id: atv.atividadesMateria[0].id, route: 'verAtividadeMateria'});
                 });
             }
             catch(e){
-                throw e;
-                // this.errorMessage = e.body.message;
+                this.errorMessage = e.body.message;
             }  
         }
     },

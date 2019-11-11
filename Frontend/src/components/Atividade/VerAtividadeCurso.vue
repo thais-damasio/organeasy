@@ -47,7 +47,7 @@
                 <!-- Pontuação -->
                 <div class="uk-margin" v-if="dados.tem_pontos">
                     <label class="uk-form-label">Pontuação</label>
-                    <div>{{dados.valor_ganho}}/<b>{{dados.valor}}</b></div>
+                    <div>{{dados.valor_ganho || '-'}}/<b>{{dados.valor || '-'}}</b></div>
                 </div>
                 <!--  -->
             </div>

@@ -29,6 +29,7 @@ exports.index = async (req, res) => {
                     include: [
                         {
                             association: 'materia',
+                            required: true,
                             include: [
                                 {
                                     association: 'curso',
@@ -107,6 +108,7 @@ exports.atividadesByMonth = async (req, res) => {
                     include: [
                         {
                             association: 'materia',
+                            required: true,
                             include: [
                                 {
                                     association: 'curso',
@@ -276,6 +278,7 @@ exports.atividadesToday = async (req, res) => {
                     include: [
                         {
                             association: 'materia',
+                            required: true,
                             include: [
                                 {
                                     association: 'curso',
@@ -328,6 +331,7 @@ exports.atividadesEstatistcas = async (req, res) => {
         // Não concluídas
         let n_lazer = await AtividadeLazer.findAll({
             attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_n_concluida']],
+            where: { id_aluno: req.user.id },
             include: [
                 {
                     association: 'atividade',
@@ -355,6 +359,12 @@ exports.atividadesEstatistcas = async (req, res) => {
                             sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
                         ]
                     }
+                },
+                {
+                    association: 'curso',
+                    required: true,
+                    where: { id_aluno: req.user.id },
+                    attributes: []
                 }
             ]
         });
@@ -371,6 +381,16 @@ exports.atividadesEstatistcas = async (req, res) => {
                             sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
                         ]
                     }
+                },
+                {
+                    association: 'materia',
+                    required: true,
+                    attributes: [],
+                    include: [{
+                        association: 'curso',
+                        required: true,
+                        where: { id_aluno: req.user.id },
+                    }]
                 }
             ]
         });
@@ -378,6 +398,7 @@ exports.atividadesEstatistcas = async (req, res) => {
         // Concluídas
         let lazer = await AtividadeLazer.findAll({
             attributes: [[sequelize.fn('COUNT', sequelize.col('*')), 'count_concluida']],
+            where: { id_aluno: req.user.id },
             include: [
                 {
                     association: 'atividade',
@@ -405,6 +426,12 @@ exports.atividadesEstatistcas = async (req, res) => {
                             sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
                         ]
                     }
+                },
+                {
+                    association: 'curso',
+                    attributes: [],
+                    required: true,
+                    where: { id_aluno: req.user.id },
                 }
             ]
         });
@@ -421,6 +448,17 @@ exports.atividadesEstatistcas = async (req, res) => {
                             sequelize.where(sequelize.fn("year", sequelize.col("data_entrega")), year)
                         ]
                     }
+                },
+                {
+                    association: 'materia',
+                    attributes: [],
+                    required: true,
+                    include: [{
+                        association: 'curso',
+                        required: true,
+                        attributes: [],
+                        where: { id_aluno: req.user.id },
+                    }]
                 }
             ]
         });
