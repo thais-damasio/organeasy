@@ -7,7 +7,7 @@
         </div>      
 
         <!-- Slider com atividades da semana -->
-        <div uk-slider class="uk-background-muted">
+        <div uk-slider class="uk-background-muted uk-margin-bottom">
             <div class="uk-position-relative uk-padding uk-padding-remove-bottom uk-visible-toggle uk-light" tabindex="-1">
                 <!-- Lista de Atividades -->
                 <h4 class="uk-text-danger">Atividades da Semana</h4>
