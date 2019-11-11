@@ -18,6 +18,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       nome: {
         allowNull: false,

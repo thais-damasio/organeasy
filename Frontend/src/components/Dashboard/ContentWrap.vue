@@ -1,16 +1,8 @@
 <template>
   <div class="content-wrapper">
-    
-    <!-- Cabeçalho de link -->
-    <section class="content-header uk-margin-bottom">
-      <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
 
     <!-- Router View -->
-    <section class="content">
+    <section class="content" style="padding-bottom: 50px">
       <transition name="page" mode="out-in">
         <router-view></router-view>
       </transition>

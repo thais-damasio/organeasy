@@ -11,7 +11,7 @@ exports.index = async (req, res) => {
                     association: 'curso',
                     required: true,
                     where: {id_aluno: req.user.id}
-                },
+                }                
             ]
         });
 

@@ -14,6 +14,7 @@ router.post('/create/',
 [celebrate({
     body: Joi.object().keys({
       // Para a atividadeMateria
+      id_materia: Joi.number().integer().required(),
       tem_pontos: Joi.boolean(),
       valor: Joi.number(),
       valor_ganho: Joi.number(),

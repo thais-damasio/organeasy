@@ -9,6 +9,17 @@ module.exports = {
     host: process.env.DB_DEVHOSTNAME,
     port: process.env.DB_DEVPORT,
     dialect: process.env.DB_DEVDIALECT,
+    dialectOptions: {
+      useUTC: false, //for reading from database
+      dateStrings: true,
+      typeCast: function (field, next) { // for reading from database
+        if (field.type === 'DATETIME') {
+          return new Date(field.string())
+        }
+          return next()
+        },
+    },
+    timezone: '+03:00'
   },
   production: {
     username: process.env.DB_USERNAME,
@@ -16,6 +27,17 @@ module.exports = {
     database: process.env.DB_DATABASE,
     host: process.env.DB_HOSTNAME,
     port: process.env.DB_PORT,
-    dialect: process.env.DB_DIALECT
+    dialect: process.env.DB_DIALECT,
+    dialectOptions: {
+      useUTC: false, //for reading from database
+      dateStrings: true,
+      typeCast: function (field, next) { // for reading from database
+        if (field.type === 'DATETIME') {
+          return new Date(field.string())
+        }
+          return next()
+        },
+    },
+    timezone: '+03:00'
   },
 }

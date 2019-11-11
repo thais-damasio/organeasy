@@ -7,8 +7,13 @@ exports.index = async (req, res) => {
         let atividadesLazer = await AtividadeLazer.findAll({
             where: {id_aluno: req.user.id},
             include: [
-                {association: 'atividade'},
-            ]
+                {
+                    association: 'atividade',
+                },
+            ],
+            order: [
+                ['atividade', 'titulo', 'ASC'],
+            ],
         });
 
         let resHttp = success.customSuccess(null,atividadesLazer)

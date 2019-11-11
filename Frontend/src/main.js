@@ -7,15 +7,25 @@ import VueResource from 'vue-resource'
 import VueSession from 'vue-session'
 import Vuelidate from 'vuelidate'
 import VueContentPlaceholders from 'vue-content-placeholders'
+import VueSweetalert2 from 'vue-sweetalert2';
 import '@/components/lib/css'
 import '@/components/lib/script'
-
+import moment from 'moment'
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 Vue.use(VueContentPlaceholders)
 Vue.use(VueResource);
 Vue.use(VueSession);
 Vue.use(Vuelidate);
 Vue.config.productionTip = false
+Vue.use(VueSweetalert2);
+ 
+ 
+Vue.filter('formatDate', function(value) {
+  if (value) {
+    return moment(String(value)).format('DD/MM/YYYY')
+  }
+});
 
 /* eslint-disable no-new */
 new Vue({

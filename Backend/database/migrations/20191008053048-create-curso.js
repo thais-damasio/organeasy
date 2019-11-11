@@ -26,6 +26,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       criado_em: {
         allowNull: true,

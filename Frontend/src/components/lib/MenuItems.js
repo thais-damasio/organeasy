@@ -8,7 +8,7 @@ module.exports = [
     icon: 'fa fa-home',
     name: 'Home',
     router: {
-      name: 'dashboard'
+      name: 'geral'
     }
   },
   {
@@ -23,25 +23,17 @@ module.exports = [
     type: 'item',
     icon: 'fa fa-bell',
     name: 'Notificações',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
+    router: {
+      name: 'notificacoes'
+    }
   },
   {
     type: 'item',
     icon: 'fa fa-line-chart',
     name: 'Estatísticas',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
-  },
-  {
-    type: 'item',
-    icon: 'fa fa-graduation-cap',
-    name: 'Notas',
-    // router: {
-    //   name: 'WidgetsExample'
-    // }
+    router: {
+      name: 'estatisticas'
+    }
   },
   {
     type: 'item',

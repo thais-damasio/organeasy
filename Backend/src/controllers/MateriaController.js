@@ -12,7 +12,7 @@ exports.index = async (req, res) => {
                     where: {id_aluno: req.user.id},
                 },
                 {
-                    association: 'atividadesMateria',
+                    association: 'atividadesMateria'
                 },
             ]
         });
@@ -75,6 +75,7 @@ exports.details = async (req, res) => {
                 },
                 {
                     association: 'atividadesMateria',
+                    include: [{association: 'atividade'}]
                 }
             ]
         });        

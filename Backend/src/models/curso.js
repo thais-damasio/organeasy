@@ -42,8 +42,8 @@ module.exports = (sequelize, DataTypes) => {
     //Associações
     Curso.associate = function(models) {
       Curso.belongsTo(models.Aluno, {as: 'aluno', targetKey: 'id', foreignKey: 'id_aluno'});
-      Curso.hasMany(models.AtividadeCurso, {as: 'atividadesCurso', targetKey: 'id', foreignKey: 'id_curso'});
-      Curso.hasMany(models.Materia, {as: 'materias', targetKey: 'id', foreignKey: 'id_curso'});
+      Curso.hasMany(models.AtividadeCurso, {as: 'atividadesCurso', targetKey: 'id', foreignKey: 'id_curso', onDelete: 'cascade', hooks: true});
+      Curso.hasMany(models.Materia, {as: 'materias', targetKey: 'id', foreignKey: 'id_curso'}, {onDelete: 'cascade', hooks: true});
     }; 
   
     return Curso;

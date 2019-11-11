@@ -17,7 +17,16 @@ module.exports = (sequelize, DataTypes) => {
       },
       data_entrega: {
         type: DataTypes.DATE,
-        allowNull: true
+        allowNull: true,
+        get() {            
+          if(this.getDataValue('data_entrega')){
+            month = (this.getDataValue('data_entrega').getMonth() + 1);
+            day = this.getDataValue('data_entrega').getDate();
+            year = this.getDataValue('data_entrega').getFullYear();
+            return year + '-' + ("0"+ month).slice(-2) + '-' + ("0"+day ).slice(-2);
+          }
+          return this.getDataValue('data_entrega');
+        }
       },
       criado_em: {
         type: DataTypes.DATE,

@@ -31,6 +31,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'set null',
+        onDelete: 'set null'
       },
       criado_em: {
         allowNull: true,

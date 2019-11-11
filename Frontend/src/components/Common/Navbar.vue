@@ -1,7 +1,7 @@
 <template>
   <header class="main-header">
     <!-- Logo -->
-    <a to="dashboard" class="logo">
+    <router-link to="dashboard" class="logo">
       <!-- mini logo - 50x50 pixels -->
       <span class="logo-mini">        
         <img src="../../../static/img/logos/logo-mini.png">
@@ -10,7 +10,7 @@
       <span class="logo-lg">
         <img src="../../../static/img/logos/logo-lg.png">
       </span>
-    </a>
+    </router-link>
 
     <!-- Cabeçalho -->
     <nav class="navbar navbar-static-top">
@@ -28,19 +28,22 @@
               <span class="label label-warning">{{ unreadNotificationsCount }}</span>
             </a>
             <ul class="dropdown-menu">
-              <li class="header">Você tem {{ unreadNotificationsCount }} notificações</li>
+              <li v-if="!errorNotification" class="header">Você tem {{ unreadNotificationsCount }} atividades para hoje</li>
+              <li class="header" v-else>{{errorNotification}}</li>
               <li>
                 <ul class="menu">
                   <!-- Notificações -->
                   <li v-for="notification in notifications" :key="notification.id">
-                    <a href="#">
+                    <a @click.prevent.stop="goTo(notification)">
                       {{notification.message}}
                     </a>
                   </li>
                   <!--  -->
                 </ul>
               </li>
-              <li class="footer"><a href="#">Ver todas</a></li>
+              <li v-if="!errorNotification" class="footer">
+                <router-link :to="{name: 'notificacoes'}">Ver todas</router-link>
+              </li>
             </ul>
           </li>
         </ul>
@@ -57,13 +60,41 @@
 export default {
   data() {
     return {
-      unreadNotificationsCount: 3,
+      errorNotification: null,
+      unreadNotificationsCount: 0,
       notifications: [
-        {id: 1, message: 'Teste de notificação 1'},
-        {id: 2, message: 'Teste de notificação 2'},
-        {id: 3, message: 'Teste de notificação 3'},
       ]
     }
+  },
+  methods: {
+    goTo(notification) {
+      this.$router.replace({name: notification.route, params: {id: notification.id}})
+    }
+  },
+  created() {
+      let hoje = new Date(Date.now());
+      let token = this.$session.get('jwt');
+
+      this.$http.get(process.env.API_URL + "atividade/today/" + hoje.toDateString(), {headers: {Authorization: token}}).
+      then(
+        notificacoes => {
+          notificacoes.body.data.atividadesLazer.forEach(atv => {
+            this.notifications.push({id: atv.atividadesLazer[0].id, route: "verAtividadeLazer", message: atv.titulo});
+          });
+          notificacoes.body.data.atividadesCurso.forEach(atv => {
+            this.notifications.push({id: atv.atividadesCurso[0].id, route: "verAtividadeCurso", message: atv.titulo});
+          });
+          notificacoes.body.data.atividadesMateria.forEach(atv => {
+            this.notifications.push({id: atv.atividadesMateria[0].id, route: "verAtividadeMateria", message: atv.titulo});
+          });
+
+          if(this.notifications.length > 5)
+            this.notifications = this.notifications.slice(4, -1);
+          this.unreadNotificationsCount = this.notifications.length;
+        },
+        err => {
+          this.errorNotification = "Houve um erro ao carregar as notificações!";
+        });    
   }
 }
 </script>

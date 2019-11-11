@@ -9,7 +9,10 @@ exports.index = async (req, res) => {
                 include: [
                     {association: 'materias'},
                     {association: 'atividadesCurso'},
-                ]
+                ],
+                order: [
+                    ['nome', 'ASC'],
+                ],
             });
 
         let resHttp = success.customSuccess(null, cursos);
@@ -47,8 +50,17 @@ exports.details = async (req, res) => {
             },
             include: [
                 {association: 'materias'},
-                {association: 'atividadesCurso'},
-            ]
+                {
+                    association: 'atividadesCurso',
+                    include: [{association: 'atividade'}],
+                    order: [
+                        ['atividade', 'titulo', 'ASC'],
+                    ],
+                },
+            ],
+            order: [
+                ['materias', 'nome', 'ASC']
+            ],
         });        
         
         res.status(success.ok.status).send(curso || {});

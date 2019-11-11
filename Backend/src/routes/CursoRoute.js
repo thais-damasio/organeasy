@@ -29,8 +29,7 @@ controller.details);
 router.put('/update/:id', 
 [celebrate({
     body: Joi.object().keys({
-      nome: Joi.string().max(255),
-      tem_materias: Joi.boolean()
+      nome: Joi.string().max(255)
     })
 }),
 passport.authenticate('jwt', {session: false})],

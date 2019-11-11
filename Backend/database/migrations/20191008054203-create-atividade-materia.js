@@ -18,6 +18,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       id_atividade: {
         allowNull: false,
@@ -28,6 +30,8 @@ module.exports = {
           },
           key: 'id'
         },
+        onUpdate: 'cascade',
+        onDelete: 'cascade'
       },
       tem_pontos: {
         allowNull: false,
