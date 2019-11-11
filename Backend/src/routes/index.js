@@ -10,8 +10,6 @@ module.exports = function (app) {
     app.use('/avatar', require('./AvatarRoute'));
     app.use('/curso', require('./CursoRoute'));
     app.use('/materia', require('./MateriaRoute'));
-    app.use('/checklist', require('./ChecklistRoute'));
-    app.use('/opcao-checklist', require('./OpcaoChecklistRoute'));
     app.use(errors());
     
     // Rota não encontrada
