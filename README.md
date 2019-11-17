@@ -29,7 +29,7 @@ Equipe
 ***
 Especificação
 ------
-Toda a especificação está contida na documentação presente neste projeto que pode ser acessada [aqui](https://github.com/Thais-Damasio/organeasy/blob/master/DOCS/Doc_Organeasy.pdf).
+Toda a especificação está contida na documentação presente neste projeto que pode ser acessada [aqui](https://github.com/Thais-Damasio/organeasy/blob/master/DOCS/Doc_Organeasy(2019).pdf).
 
 [logo]: https://img.icons8.com/offices/30/000000/curriculum.png "Logo"
 [heart]: https://img.icons8.com/material-two-tone/24/000000/novel.png "Heart"
